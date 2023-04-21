@@ -1,0 +1,42 @@
+.sideBarWhole{
+    background-color: #1E1E2D;
+    padding: 15px 16px;
+    height: 100vh;
+    max-width: 260px;
+    width: 100%;
+}
+
+.logo{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    margin-bottom: 45px;
+}
+
+.sidebarDiv{
+    display: flex;
+    cursor: pointer;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.sidebarActiveName{
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+    margin-left: 8px;
+}
+
+.sideBarName{
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #A3A7B9;
+    margin-left: 8px;
+}

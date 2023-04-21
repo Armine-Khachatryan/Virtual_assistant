@@ -1,0 +1,101 @@
+.groupWhole{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    height: 100%;
+    padding: 24px 32px;
+}
+
+.groupHeader{
+    border-bottom: 1px solid #F0F1F2;
+    margin-bottom: 32px;
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    color: #1E1E2D;
+}
+
+.groupTable{
+    width: 100%;
+    overflow-y: auto;
+    border-collapse: collapse;
+}
+
+.groupTable thead{
+    background: #F0F1F2;
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1E1E2D;
+}
+
+
+.groupTable th{
+    width: 20%;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.groupTable td{
+    width: 20%;
+    padding-top: 7px;
+    padding-bottom:  7px;
+    text-align: center;
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1E1E2D;
+}
+
+.groupTable tbody tr{
+    border-bottom: 1px solid #E3E4E9;
+}
+
+.groupTable tbody tr:last-child{
+    border-bottom: none;
+}
+
+.plusImg{
+    margin-right: 8px;
+}
+
+.groupTable tbody .addTag{
+    cursor: pointer;
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #009DF6;
+}
+
+.activeBlue{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-decoration-line: underline;
+    color: #2697D4 !important;
+    cursor: pointer;
+}
+
+.singleTag{
+    display: flex;
+    align-items: center;
+    padding: 9px;
+    background: #F0F1F2;
+    border-radius: 360px;
+}
+
+.itemDiv{
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1E1E2D;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 200px;
+}

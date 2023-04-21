@@ -1,0 +1,11 @@
+.textCongratulation{
+    max-width: 354px;
+    width: 100%;
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #1E1E2D;
+    margin-top: 68px;
+}

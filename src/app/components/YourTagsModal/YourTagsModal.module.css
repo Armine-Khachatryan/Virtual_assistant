@@ -1,0 +1,10 @@
+.renderTagsYourModal{
+    display: flex;
+    gap:12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F0F1F2;
+    margin-bottom: 16px;
+    max-width: 715px;
+    width: 100%;
+    overflow-x: auto;
+}

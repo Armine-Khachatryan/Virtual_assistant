@@ -1,0 +1,57 @@
+.profileWhole{
+    display: flex;
+}
+
+.profileRight{
+    width: 100%;
+}
+
+/*.profileDiv{*/
+/*    background: #FFFFFF;*/
+/*    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);*/
+/*    border-radius: 16px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    padding-top: 130px;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.profileText{*/
+/*    margin-top: 32px;*/
+/*    margin-bottom: 32px;*/
+/*    max-width: 748px;*/
+/*    width: 100%;*/
+/*    text-align: center;*/
+/*    font-family: Inter_Medium,sans-serif;*/
+/*    font-weight: 500;*/
+/*    font-size: 18px;*/
+/*    line-height: 150%;*/
+/*    color: #1E1E2D;*/
+/*}*/
+
+/*.buttonsDiv{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    gap:12px;*/
+/*}*/
+/*.btnProfile{*/
+/*    background: #1877F2;*/
+/*    border-radius: 4px;*/
+/*    width: 306px;*/
+/*    padding-top: 10px;*/
+/*    padding-bottom: 10px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.btnText{*/
+/*    font-family: Inter_Regular,sans-serif;*/
+/*    font-weight: 400;*/
+/*    font-size: 16px;*/
+/*    line-height: 19px;*/
+/*    color: #FFFFFF;*/
+/*    margin-left: 8px;*/
+/*}*/

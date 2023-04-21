@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+body{
+    background-color:#FFFFFF;
+    min-height: 100vh;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+/*.container{*/
+/*    max-width: 1538px;*/
+/*    width: 100%;*/
+/*    padding-left: 15px;*/
+/*    padding-right: 15px;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+.whole{
+    display: flex;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F1F2;
+    height: 100vh;
+    width: 50%;
+}
+.sign{
+    font-family: Inter_Medium,sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1E1E2D;
+    margin-bottom: 48px;
+}
+
+.welcome{
+    font-family: Inter_Medium,sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #1E1E2D;
+    margin-bottom: 24px;
+}
+
+.virt{
+    font-family: Inter_Medium,sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 39px;
+    color: #1E1E2D;
+    padding-bottom: 32px;
+    border-bottom: 3px solid #2697D4;
+    margin-bottom: 32px;
+    width: 340px;
+    text-align: center;
+}
+
+.insideDiv{
+    padding: 30px;
+    background: #C1C1C1;
+    height: calc(100vh - 128px)
+}
+
+.insideDivDashboard{
+    padding: 30px;
+    background: #C1C1C1;
+    height: calc(100vh - 64px)
+}
+
+.modalUpPart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F0F1F2;
+    margin-bottom: 24px;
+    width: 100%;
+}
+.modalTitle{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #1E1E2D;
+}
+
+.closingImgDiv{
+    cursor: pointer;
+}
+
+.header_dropDown {
+    position: relative;
+}
+.header_dropDown_content {
+    background: white;
+    position: absolute;
+    top: 7%;
+    right: 2%;
+    width: 180px;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+}
+
+@font-face {
+    font-family: Inter_Light;
+    src: url(app/assets/fonts/Inter/Inter_Light.ttf);
+}
+
+@font-face {
+    font-family: Inter_Thin;
+    src: url(app/assets/fonts/Inter/Inter_Thin.ttf);
+}
+
+@font-face {
+    font-family: Inter_Regular;
+    src: url(app/assets/fonts/Inter/Inter_Regular.ttf);
+}
+
+@font-face {
+    font-family: Inter_Medium;
+    src: url(app/assets/fonts/Inter/Inter_Medium.ttf);
+}
+
+@font-face {
+    font-family: Inter_SemiBold;
+    src: url(app/assets/fonts/Inter/Inter_SemiBold.ttf);
+}
+
+@font-face {
+    font-family: Inter_Bold;
+    src: url(app/assets/fonts/Inter/Inter_Bold.ttf);
+}
+
+@font-face {
+    font-family:Inter_ExtraBold;
+    src: url(app/assets/fonts/Inter/Inter_ExtraBold.ttf);
+}
