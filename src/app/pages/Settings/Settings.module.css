@@ -1,0 +1,88 @@
+.settingsWhole{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    height: 100%;
+    padding: 24px 64px;
+}
+.settingsUpPart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #F0F1F2;
+    margin-bottom: 64px;
+}
+
+.settingsTitle{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    color: #1E1E2D;
+}
+
+.settingsButton {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 179px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #2697D4;
+    border-radius: 4px;
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
+
+.settingsPart{
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.settingsName{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #A3A7B9;
+    width: 144px;
+    margin-right: 140px;
+}
+
+.settingsData{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1E1E2D;
+}
+
+.greenDiv{
+    margin-left: 16px;
+    width: 93px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 150%;
+    color: #FFFFFF;
+    background: #54CC8D;
+    border-radius: 8px;
+}
+
+.linkBtn{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #2697D4;
+    cursor: pointer;
+}

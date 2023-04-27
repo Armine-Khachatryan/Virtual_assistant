@@ -1,7 +1,6 @@
 import React from "react";
 import Modal from 'react-modal';
 import ClosingIcon from "../../assets/images/ClosingIcon.png";
-import TagClosingIcon from '../../assets/images/TagClosingIcon.png';
 import classes from './YourTagsModal.module.css';
 
 
@@ -41,7 +40,8 @@ function YourTagsModal(props){
                 <div className="closingImgDiv" onClick={props.closeYourTagsModal}><img src={ClosingIcon} alt=""/></div>
             </div>
             <div className={classes.renderTagsYourModal}>
-                {props?.tableInfo[props?.index]?.tagNumbersLength !==0 && props.renderTags}
+                {props.renderSavedTags}
+                {/*{props?.tableInfo[props?.arrayIndex]?.tagNumbersLength !==0 && props.renderSavedTags}*/}
             </div>
         </Modal>
     )

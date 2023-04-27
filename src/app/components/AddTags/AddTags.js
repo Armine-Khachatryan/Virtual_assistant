@@ -39,7 +39,7 @@ function AddTags(props){
 
 
     const tagRemovingAndSaving =()=>{
-        props.onSave();
+        props.onSaveAddedTags();
         props.closeAddTagsModal()
     }
 
@@ -70,17 +70,18 @@ function AddTags(props){
                         // onBlur: emailBlurHandler
                     }}
                 />
-                <div className={classes.addBtn} onClick={props.onAddTag}>
-                    <img className={classes.whiteIconBtn} src={WhiteAddIcon} alt=""/>Add</div>
+                <button id="button-1" className={classes.addBtn} onClick={props.onAddTag}>
+                    <img className={classes.whiteIconBtn} src={WhiteAddIcon} alt=""/>Add</button>
             </div>
             <div className={classes.tagsWhole}>
-                {props.renderTags}
+                {props.renderAddedTags}
             </div>
-            {props?.tableInfo[props.index]?.addedTags?.length > 0 &&
+            {props?.tableInfo[props.arrayIndex]?.addedTags?.length > 0 &&
                 <div style={{display:"flex", justifyContent:"flex-end"}}>
-                    <div className={classes.saveBtn}
+                    <button className={classes.saveBtn}
+                            disabled={!props.addButtonClicked}
                          onClick={tagRemovingAndSaving}>
-                        Save</div>
+                        Save</button>
                 </div>
             }
         </Modal>

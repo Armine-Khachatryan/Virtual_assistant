@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Modal from 'react-modal';
 import ClosingIcon from '../../assets/images/ClosingIcon.png';
 import classes from './ResetPasswordModal.module.css';
@@ -23,8 +23,6 @@ function ResetPasswordModal(props){
             transform: 'translate(-50%, -50%)',
             display: 'flex',
             flexDirection: 'column',
-            // alignItems: 'center',
-            // justifyContent: 'center',
             background:'#FFFFFF',
             boxShadow:'0px 8px 16px rgba(0, 0, 0, 0.15)',
             borderRadius:'12px',

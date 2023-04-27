@@ -7,11 +7,12 @@ import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
 import EyeImage from "../../assets/images/EyeImage.png";
 import ClosedEye from "../../assets/images/ClosedEye.png";
+import classes from './ChangePasswordModal.module.css';
 
 
 
-function ChangePasswordModal(props){
 
+function ChangePasswordModal(props) {
 
 
     const customStyles = {
@@ -27,11 +28,9 @@ function ChangePasswordModal(props){
             transform: 'translate(-50%, -50%)',
             display: 'flex',
             flexDirection: 'column',
-            // alignItems: 'center',
-            // justifyContent: 'center',
-            background:'#FFFFFF',
-            boxShadow:'0px 8px 16px rgba(0, 0, 0, 0.15)',
-            borderRadius:'12px',
+            background: '#FFFFFF',
+            boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.15)',
+            borderRadius: '12px',
         },
         overlay: {zIndex: 1000}
     };
@@ -39,59 +38,62 @@ function ChangePasswordModal(props){
     const {isPassword}=useValidation();
     const [changePasswordError, setChangePasswordError] = useState(null);
 
-
     const {
-        value: password,
-        isValid: passwordIsValid,
-        hasError: passwordHasError,
-        valueChangeHandler: passwordChangeHandler,
-        inputBlurHandler: passwordBlurHandler,
-        togglePassword: passwordShowHandler,
-        passwordShown: passwordShow,
-        reset: resetPassword,
+        value: oldPassword,
+        isValid: oldPasswordIsValid,
+        hasError: oldPasswordHasError,
+        valueChangeHandler: oldPasswordChangeHandler,
+        inputBlurHandler: oldPasswordBlurHandler,
+        togglePassword: oldPasswordShowHandler,
+        passwordShown:oldPasswordShow,
+        reset: resetOldPassword,
         showPassFalse: showPassFalse,
-        isTouched: passwordIsTouched
+        isTouched: oldPasswordIsTouched
     } = useInput(isPassword);
 
 
 
     const {
-        value: confirmPasswordValue,
-        isValid: confirmPasswordIsValid,
-        valueChangeHandler: confirmPasswordChangeHandler,
-        inputBlurHandler: confirmPasswordBlurHandler,
-        togglePassword: confirmPasswordShowHandler,
-        passwordShown: confirmPasswordShow,
-        reset: resetConfirmPassword,
-        isTouched: confirmPasswordIsTouched
+        value:newPassword,
+        isValid:newPasswordIsValid,
+        valueChangeHandler: newPasswordChangeHandler,
+        inputBlurHandler:newPasswordBlurHandler,
+        togglePassword: newPasswordShowHandler,
+        passwordShown:newPasswordShow,
+        reset: resetNewPassword,
+        isTouched: newPasswordIsTouched
     } = useInput(isPassword);
+
+
+
+
 
     useEffect(() => {
-        if(passwordIsTouched || confirmPasswordIsTouched){
+        if(oldPasswordIsTouched || newPasswordIsTouched){
             setChangePasswordError("")
         }
-    },[passwordIsTouched,confirmPasswordIsTouched]);
+    },[oldPasswordIsTouched,newPasswordIsTouched]);
 
 
     let hasError = false;
-    let confirmPasswordMessage=null;
-    if(password !== confirmPasswordValue){
+    let newPasswordMessage=null;
+    if(oldPassword !== newPassword){
         hasError = true;
-        confirmPasswordMessage = "Passwords do not match"
+        newPasswordMessage = "Passwords do not match"
     }
 
 
     let formIsValid = false;
-    if (passwordIsValid && confirmPasswordIsValid) {
+    if (oldPasswordIsValid && newPasswordIsValid) {
         formIsValid = true;
     }
 
 
 
-    function closeAndResetNewPasswordModal (){
-        props.closeNewPasswordModal();
-        resetPassword();
-        resetConfirmPassword();
+    function closeAndResetChangePasswordModal (){
+        props.closeChangePasswordModal();
+        resetOldPassword();
+        resetNewPassword();
         showPassFalse();
         setChangePasswordError("")
     }
@@ -123,9 +125,9 @@ function ChangePasswordModal(props){
             return;
         }
         // postChangePassword();
-        resetPassword();
+        resetOldPassword();
         showPassFalse()
-        resetConfirmPassword()
+        resetNewPassword()
     }
 
     const handleKeyPress = event => {
@@ -134,58 +136,60 @@ function ChangePasswordModal(props){
         }
     }
 
+
     return(
         <>
             <Modal
-                isOpen={props.newPasswordModalIsOpen}
-                onRequestClose={closeAndResetNewPasswordModal}
+                isOpen={props.changePasswordModalIsOpen}
+                onRequestClose={closeAndResetChangePasswordModal}
                 style={customStyles}
                 ariaHideApp={false}
             >
                 <div className="modalUpPart">
-                    <div className="modalTitle">Reset your password</div>
-                    <div className="closingImgDiv" onClick={closeAndResetNewPasswordModal}><img src={ClosingIcon} alt=""/></div>
+                    <div className="modalTitle">Change Password</div>
+                    <div className="closingImgDiv" onClick={closeAndResetChangePasswordModal}>
+                        <img src={ClosingIcon} alt=""/></div>
                 </div>
                 <form
-                    onSubmit={submitHandler}
+                    onSubmit={submitHandler} className={classes.formWhole}
                 >
                     <Input
-                        label='Password'
+                        label='Old Password'
                         error={changePasswordError}
-                        width='713px'
-                        hasError={passwordHasError}
+                        width='520px'
+                        hasError={oldPasswordHasError}
                         errorText="Password must contain one lowercase, one uppercase, one number,
                          one special character, 8 characters minimum"
-                        image={passwordShow ? EyeImage : ClosedEye}
-                        onClick={passwordShowHandler}
+                        image={oldPasswordShow ? EyeImage : ClosedEye}
+                        onClick={oldPasswordShowHandler}
                         input={{
-                            value: password,
-                            placeholder: "Type new password",
-                            type: passwordShow ? "text" : "password",
-                            onChange: passwordChangeHandler,
-                            onBlur: passwordBlurHandler,
+                            value: oldPassword,
+                            placeholder: "Type your old password",
+                            type: oldPasswordShow ? "text" : "password",
+                            onChange: oldPasswordChangeHandler,
+                            onBlur: oldPasswordBlurHandler,
                         }}
                     />
                     <Input
-                        label='Repeat New Password'
+                        label='New Password'
                         error={changePasswordError}
-                        width='713px'
-                        hasError = {hasError && confirmPasswordIsTouched}
-                        errorText={confirmPasswordMessage}
-                        image ={confirmPasswordShow ? EyeImage : ClosedEye}
-                        onClick={confirmPasswordShowHandler}
+                        width='520px'
+                        hasError = {hasError && newPasswordIsTouched}
+                        errorText={newPasswordMessage}
+                        image ={newPasswordShow ? EyeImage : ClosedEye}
+                        onClick={newPasswordShowHandler}
                         input={{
-                            value: confirmPasswordValue,
-                            placeholder: "Repeat New Password",
-                            type: confirmPasswordShow ? "text" : "password",
-                            onChange: confirmPasswordChangeHandler,
-                            onBlur: confirmPasswordBlurHandler,
+                            value: newPassword,
+                            placeholder: "Set new password",
+                            type: newPasswordShow ? "text" : "password",
+                            onChange: newPasswordChangeHandler,
+                            onBlur: newPasswordBlurHandler,
                             onKeyPress:handleKeyPress
                         }}
                     />
-                    <Button disabled={!formIsValid} width="713px"
+                    <Button disabled={!formIsValid} width="520px"
                             marginTop="-8px"
-                            type={"Reset Password"}>Save</Button>
+                            type={"Reset Password"}>Save Changes</Button>
                 </form>
             </Modal>
         </>

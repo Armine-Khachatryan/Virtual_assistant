@@ -7,6 +7,7 @@ import classes from './Dashboard.module.css';
 
 
 function Dashboard(){
+
     return(
         <div className={classes.profileDiv}>
             <img src={Img1} alt=""/>

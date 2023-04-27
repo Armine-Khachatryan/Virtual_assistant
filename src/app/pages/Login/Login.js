@@ -9,7 +9,7 @@ import MainImg from "../../assets/images/MainImg.png";
 import useValidation from "../../hooks/useValidation";
 import useInput from "../../hooks/useInput";
 import classes from './Login.module.css';
-import ChangePasswordModal from "../../components/ChangePasswordModal/ChangePasswordModal";
+import NewPasswordModal from "../../components/NewPasswordModal/NewPasswordModal";
 
 
 function Login() {
@@ -104,7 +104,7 @@ function Login() {
         if (!formIsValid) {
             return;
         }
-        navigate(`/dashboard`)
+        navigate(`dashboard`)
         resetEmail();
         resetPassword();
         showPassFalse();
@@ -115,11 +115,11 @@ function Login() {
 
 
     return(
-        <div className={"whole"}>
-            <div className={"left"}>
-                <div className={"welcome"}>Welcome to </div>
-                <div className={"virt"}>Virt Assistant</div>
-                <div className={'sign'}>Sign Up</div>
+        <div className="whole">
+            <div className="left">
+                <div className="welcome">Welcome to </div>
+                <div className="virt">Virt Assistant</div>
+                <div className='sign'>Sign Up</div>
                 <form onSubmit={submitHandler}>
                     <Input
                         label='Email'
@@ -159,7 +159,7 @@ function Login() {
                                         openNewPasswordModal={openNewPasswordModal}
                                         closeNewPasswordModal={closeNewPasswordModal}
                     />
-                    <ChangePasswordModal closeNewPasswordModal={closeNewPasswordModal}
+                    <NewPasswordModal closeNewPasswordModal={closeNewPasswordModal}
                                          newPasswordModalIsOpen={newPasswordModalIsOpen}/>
                     <Button disabled={!formIsValid} width="520px"
                             marginTop="48px"

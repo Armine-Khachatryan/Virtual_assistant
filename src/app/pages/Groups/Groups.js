@@ -15,24 +15,27 @@ function Groups() {
         number_of_members: 324,
         number_of_tags: 0,
         addedTags: [],
-        tagNumbersLength:0
+        tagNumbersArray:[]
         // id: Math.random() * (new Date().getTime() * performance.now())
     })))
 
     const [addTagsModalIsOpen, setAddTagsModalIsOpen] = useState(false);
     const [yourTagsModalIsOpen, setYourTagsModalIsOpen] = useState(false);
-    const [index, setIndex] = useState("");
     const [tag, setTag] = useState("");
+    const [arrayIndex, setArrayIndex] = useState("");
+    const [addButtonClicked, setAddButtonClicked]=useState(false)
 
     const tagChangeHandler = (event) => {
-        setTag(event.target.value)
+        setTag(event.target.value);
+        setAddButtonClicked(false)
     }
 
-    console.log(tag, "taaaaaaaaaaaaaaag")
+    console.log(tag, "taaaaaaaaaaaaaaag");
+
 
     function openAddTagsModal(index) {
         setAddTagsModalIsOpen(true)
-        setIndex(index)
+        setArrayIndex(index)
     }
 
     function closeAddTagsModal() {
@@ -41,51 +44,79 @@ function Groups() {
 
     function openYourTagsModal(index) {
         if(
-            tableInfo[index].tagNumbersLength >0
+            tableInfo[index]?.tagNumbersArray?.length >0  //check
         )
             setYourTagsModalIsOpen(true)
-        setIndex(index)
+            setArrayIndex(index)
     }
 
     function closeYourTagsModal() {
         setYourTagsModalIsOpen(false)
     }
-
     const addTagHandler = () => {
         if(tag){
             let cloneTableInfo = JSON.parse(JSON.stringify(tableInfo));
-            cloneTableInfo[index].addedTags.push(tag);
+            cloneTableInfo[arrayIndex].addedTags.push(tag);
             setTableInfo(cloneTableInfo);
             setTag("")
+            setAddButtonClicked(true)
         }
-    }
-
-    const saveHandler = () => {
-        let cloneTableInfo = JSON.parse(JSON.stringify(tableInfo));
-        cloneTableInfo[index].number_of_tags=cloneTableInfo[index].addedTags.length;
-        // cloneTableInfo[index].number_of_tags = cloneTableInfo[index].number_of_tags + cloneTableInfo[index].addedTags.length;
-        cloneTableInfo[index].tagNumbersLength = cloneTableInfo[index].addedTags.length;
-        // setTagNumbersLength(cloneTableInfo[index].addedTags.length);
-        setTableInfo(cloneTableInfo);
     }
 
     const deleteAddedTag =(i)=>{
         let cloneTableInfo =JSON.parse(JSON.stringify(tableInfo));
-        cloneTableInfo[index].addedTags.splice(i, 1);
-        cloneTableInfo[index].number_of_tags=cloneTableInfo[index].addedTags.length;
-        cloneTableInfo[index].tagNumbersLength = cloneTableInfo[index].addedTags.length;
+        cloneTableInfo[arrayIndex].addedTags.splice(i, 1);
+        if(cloneTableInfo[arrayIndex].tagNumbersArray.length>0){
+            cloneTableInfo[arrayIndex].tagNumbersArray.splice(i, 1);
+            cloneTableInfo[arrayIndex].number_of_tags= cloneTableInfo[arrayIndex].tagNumbersArray.length
+        }
+        // cloneTableInfo[arrayIndex].number_of_tags=cloneTableInfo[arrayIndex].addedTags.length;
+        // cloneTableInfo[arrayIndex].tagNumbersLength = cloneTableInfo[arrayIndex].addedTags.length;
         setTableInfo(cloneTableInfo);
     }
-    console.log(tableInfo, "tableInfoAfterAdding")
 
-    const renderTags=tableInfo[index]?.addedTags?.map((item, i)=>(
-        <div className={classes.singleTag} key={index}>
+    const renderAddedTags=tableInfo[arrayIndex]?.addedTags?.map((item, i)=>(
+        <div className={classes.singleTag} key={i}>
+            <div style={{marginRight: "8px", cursor:"pointer"}}
+                 onClick={()=>deleteAddedTag(i)}
+            >
+                <img  src={TagClosingIcon} alt=""/>
+            </div>
+            <div className={classes.itemDiv}>{item}</div>
+        </div>
+    ))
+
+    const saveHandler = () => {
+        let cloneTableInfo = JSON.parse(JSON.stringify(tableInfo));
+        // if(addButtonClicked){
+            cloneTableInfo[arrayIndex].tagNumbersArray=[...cloneTableInfo[arrayIndex].addedTags];
+            cloneTableInfo[arrayIndex].number_of_tags= cloneTableInfo[arrayIndex].tagNumbersArray.length;
+            setTableInfo(cloneTableInfo);
+        // }
+        console.log(cloneTableInfo, "clone")
+        console.log(tableInfo, "tableInfo")
+        // cloneTableInfo[arrayIndex].number_of_tags=cloneTableInfo[arrayIndex].addedTags.length;
+        // cloneTableInfo[index].number_of_tags = cloneTableInfo[index].number_of_tags + cloneTableInfo[index].addedTags.length;
+        // cloneTableInfo[arrayIndex].tagNumbersLength = cloneTableInfo[arrayIndex].addedTags.length;
+        // setTagNumbersLength(cloneTableInfo[index].addedTags.length);
+    }
+
+const renderSavedTags=tableInfo[arrayIndex]?.tagNumbersArray?.map((item, i)=>(
+        <div className={classes.singleTag} key={i}>
             <div style={{marginRight: "8px", cursor:"pointer"}} onClick={()=>deleteAddedTag(i)}>
                 <img  src={TagClosingIcon} alt=""/>
             </div>
             <div className={classes.itemDiv}>{item}</div>
         </div>
     ))
+
+
+    console.log(typeof (tableInfo[arrayIndex]?.tagNumbersArray?.length), "tableInfo[arrayIndex]?.tagNumbersArray?.length")
+
+
+
+    // console.log(tableInfo, "tableInfoAfterAdding")
+
 
     return (
         <>
@@ -111,7 +142,7 @@ function Groups() {
                                     <td>{item.number_of_members}</td>
                                     <td
                                         // className={` ${ tableInfo[index]?.addedTags?.length > 0 && classes.activeBlue}`}
-                                        className={`${ tableInfo[index].tagNumbersLength> 0 && classes.activeBlue}`}
+                                        className={`${ tableInfo[index]?.tagNumbersArray?.length >0 && classes.activeBlue}`}
                                         onClick={()=>openYourTagsModal(index)}
                                     >{item.number_of_tags}</td>
                                     <td className={classes.addTag} onClick={() => openAddTagsModal(index)}>
@@ -127,20 +158,22 @@ function Groups() {
             <AddTags
                 addTagsModalIsOpen={addTagsModalIsOpen}
                 closeAddTagsModal={closeAddTagsModal}
-                index={index}
                 tag={tag}
                 setTag={setTag}
-                tableInfo={tableInfo}
                 onTagChange={tagChangeHandler}
                 onAddTag={addTagHandler}
-                onSave={saveHandler}
-                renderTags={renderTags}/>
+                renderAddedTags={renderAddedTags}
+                arrayIndex={arrayIndex}
+                tableInfo={tableInfo}
+                onSaveAddedTags={saveHandler}
+                addButtonClicked={addButtonClicked}
+            />
             <YourTagsModal
                 yourTagsModalIsOpen={yourTagsModalIsOpen}
                 closeYourTagsModal={closeYourTagsModal}
-                renderTags={renderTags}
                 tableInfo={tableInfo}
-                index={index}
+                arrayIndex={arrayIndex}
+                renderSavedTags={renderSavedTags}
             />
         </>
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import ActiveDashboardIcon from '../../assets/images/ActiveDashboardIcon.png';
 import ActiveGroupIcon from '../../assets/images/ActiveGroupIcon.png';
 import ActiveScheduleIcon from '../../assets/images/ActiveScheduleIcon.png';
@@ -6,21 +6,15 @@ import ScheduleIcon from '../../assets/images/ScheduleIcon.png';
 import GroupIcon from '../../assets/images/GroupIcon.png';
 import DashboardIcon from '../../assets/images/DashboardIcon.png'
 import classes from './Sidebar.module.css';
-import {useNavigate} from "react-router-dom";
 
 
 
-function Sidebar(){
 
-    const navigate=useNavigate();
+function Sidebar(props){
 
 
-const [activeSideBar, setActiveSideBar]=useState("dashboard");
-
-const setActive=(data)=>{
-    setActiveSideBar(data);
-    console.log(data);
-    navigate(`/${data}`)
+    const setActive=(data)=>{
+    props.onSetRouting(data)
 }
 
 
@@ -45,9 +39,9 @@ const setActive=(data)=>{
 
     const renderSideBarData=sideBarData.map((item, index)=>
         <div className={classes.sidebarDiv} key={index}  onClick={()=>setActive(item.name)}>
-            {activeSideBar===item.name ?    <img src={item.activeIcon} alt=""/>:
+            {props.activeSideBar===item.name ?    <img src={item.activeIcon} alt=""/>:
             <img src={item.icon} alt=""/>}
-            <div className={activeSideBar ===item.name ? classes.sidebarActiveName: classes.sideBarName}>
+            <div className={props.activeSideBar ===item.name ? classes.sidebarActiveName: classes.sideBarName}>
                 {item.name.charAt(0).toUpperCase()+item.name.slice(1)}</div>
         </div>
     )

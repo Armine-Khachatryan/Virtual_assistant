@@ -1,0 +1,47 @@
+.notificationsHeader{
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F5F5F5;
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    color: #303030;
+    margin-bottom: 28px;
+}
+
+.notificationsWhole{
+    display: flex;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #30363E;
+}
+
+.notificationsRightUp{
+    margin-bottom: 4px;
+    font-family: Inter-Regular, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #30363E;
+}
+.notificationsRightDown{
+    display: flex;
+    align-items: center;
+}
+
+.details{
+    margin-right: 16px;
+    font-family: Inter-Regular, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #2697D4;
+}
+
+.time{
+    font-family: Inter-Regular, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #BBBBBB;
+}

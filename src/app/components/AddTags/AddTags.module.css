@@ -29,6 +29,7 @@
     color: #FFFFFF;
     margin-left: 16px;
     cursor: pointer;
+    border: none;
 }
 
 .whiteIconBtn{
@@ -60,4 +61,9 @@
     line-height: 150%;
     color: #FFFFFF;
     cursor: pointer;
+    border: none;
+}
+
+.saveBtn:disabled{
+    cursor:not-allowed;
 }
