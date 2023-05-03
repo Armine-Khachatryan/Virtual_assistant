@@ -82,3 +82,7 @@
 .dropdownImg{
     margin-right: 8px;
 }
+
+.cursor{
+    cursor: pointer;
+}

@@ -80,7 +80,7 @@ function NewPasswordModal(props){
 
 
     let formIsValid = false;
-    if (passwordIsValid && confirmPasswordIsValid) {
+    if (passwordIsValid && confirmPasswordIsValid && password === confirmPasswordValue) {
         formIsValid = true;
     }
 

@@ -20,7 +20,7 @@ function ChangePasswordModal(props) {
             padding: '24px',
             maxWidth: '763px',
             width: '100%',
-            top: '55%',
+            top: '45%',
             left: '50%',
             right: 'auto',
             bottom: 'auto',
@@ -76,7 +76,7 @@ function ChangePasswordModal(props) {
 
 
     let hasError = false;
-    let newPasswordMessage=null;
+    let newPasswordMessage = null;
     if(oldPassword !== newPassword){
         hasError = true;
         newPasswordMessage = "Passwords do not match"
@@ -84,7 +84,7 @@ function ChangePasswordModal(props) {
 
 
     let formIsValid = false;
-    if (oldPasswordIsValid && newPasswordIsValid) {
+    if (oldPasswordIsValid && newPasswordIsValid && oldPassword === newPassword) {
         formIsValid = true;
     }
 

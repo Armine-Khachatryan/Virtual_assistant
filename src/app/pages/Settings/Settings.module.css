@@ -86,3 +86,62 @@
     color: #2697D4;
     cursor: pointer;
 }
+
+.labelAndInput{
+    margin-bottom: 24px;
+}
+
+.labelDiv{
+    display: block;
+    margin-bottom: 5px;
+    font-family: Inter-Regular, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1E1E2D;
+}
+
+.inputDiv{
+    width:570px;
+    padding: 12px;
+    font-family: Inter_Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #303030;
+    background: #FFFFFF;
+    border: 1px solid #A3A7B9;
+    border-radius: 4px;
+}
+
+.inputDiv:focus {
+    outline: none;
+}
+
+.textDanger{
+    font-family:Inter_Regular, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #CB2D25;
+    margin-top: 4px;
+    max-width: 520px;
+    width:570px;
+}
+.settingsEditPart{
+    display: flex;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #F0F1F2;
+    width: 569px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settingsEditName{
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #A3A7B9;
+}

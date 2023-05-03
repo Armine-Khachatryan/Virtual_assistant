@@ -2,7 +2,10 @@ import React, {useState, useEffect, useRef} from "react";
 import Person from '../../assets/images/Person.png';
 import SignOut from '../../assets/images/SignOut.png';
 import Settings from '../../assets/images/Settings.png';
-import Notifications from '../../assets/images/Notifications.png';
+import {useSelector} from "react-redux";
+import Notifications from "../Notifications/Notifications";
+import GreyNotification from '../../assets/images/GreyNotification.svg';
+import BlueNotification from '../../assets/images/BlueNotification.svg';
 import classes from './Header.module.css';
 import {NavLink, useLocation} from "react-router-dom";
 
@@ -10,8 +13,14 @@ import {NavLink, useLocation} from "react-router-dom";
 
 function Header(props){
 
+
+    // const customer = useSelector((state)=>state?.user?.data);
+    // console.log(customer, 22222222)
+    //  let userName = customer ? customer.email: ""
     const [dropdownShow, setDropDownShow] = useState(false);
     const [notificationsModalIsOpen, setNotificationsModalModalIsOpen] = useState(false);
+
+
 
     function openNotificationsModal() {
         setNotificationsModalModalIsOpen(true)
@@ -75,9 +84,10 @@ function Header(props){
                 {switchName(pathname)}
                 <div className={classes.headerRight}>
                     <div onClick={openNotificationsModal}>
-                        <img src={Notifications} alt=""/>
+                        {!notificationsModalIsOpen ?   <img src={GreyNotification}  className={classes.cursor} alt=""/>
+                        :  <img src={BlueNotification}  className={classes.cursor} alt=""/>}
                     </div>
-                    <div className={classes.hi}>Hi, Admin</div>
+                    <div className={classes.hi}>Hi,Admin</div>
                     <div style={{cursor:"pointer"}} onClick={handleClickDropdown} ref={closeHeaderDropDawnRef}>
                         <img src={Person} alt=""/>
                     </div>
@@ -109,8 +119,8 @@ function Header(props){
                     }
                 </div>
             </div>
-            {/*<Notifications notificationsModalIsOpen={notificationsModalIsOpen}*/}
-            {/*               closeNotificationsModal={closeNotificationsModal}/>*/}
+            <Notifications notificationsModalIsOpen={notificationsModalIsOpen}
+                           closeNotificationsModal={closeNotificationsModal}/>
         </>
     )
 }

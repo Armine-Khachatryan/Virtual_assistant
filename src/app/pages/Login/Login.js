@@ -4,6 +4,8 @@ import ResetPasswordModal from "../../components/ResetPasswordModal/ResetPasswor
 import EyeImage from "../../assets/images/EyeImage.png";
 import ClosedEye from "../../assets/images/ClosedEye.png";
 import Button from "../../UI/Button/Button";
+// import {useDispatch} from "react-redux";
+// import {setUserData} from "../../features/User/UserSlice";
 import {useNavigate} from "react-router-dom";
 import MainImg from "../../assets/images/MainImg.png";
 import useValidation from "../../hooks/useValidation";
@@ -14,6 +16,7 @@ import NewPasswordModal from "../../components/NewPasswordModal/NewPasswordModal
 
 function Login() {
 
+    // const dispatch=useDispatch();
     const navigate = useNavigate();
     const {isEmail, isPassword} = useValidation();
     const [signInError, setSignInError] = useState(null);
@@ -108,6 +111,7 @@ function Login() {
         resetEmail();
         resetPassword();
         showPassFalse();
+        // dispatch(setUserData({email:email}))
         // navigate(`/`);
         // await postRegistration(body);
     };

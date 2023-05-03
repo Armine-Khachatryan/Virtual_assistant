@@ -13,7 +13,8 @@
     display: flex;
     align-items: center;
     padding-bottom: 12px;
-    border-bottom: 1px solid #30363E;
+    border-bottom: 1px solid #F5F5F5;
+    margin-bottom: 12px;
 }
 
 .notificationsRightUp{
@@ -36,6 +37,7 @@
     font-size: 12px;
     line-height: 150%;
     color: #2697D4;
+    cursor: pointer;
 }
 
 .time{
@@ -44,4 +46,8 @@
     font-size: 12px;
     line-height: 150%;
     color: #BBBBBB;
+}
+
+.notify{
+    margin-left: 16px;
 }
