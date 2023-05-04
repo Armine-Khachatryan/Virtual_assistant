@@ -19,7 +19,7 @@
 }
 .fc-direction-ltr{
     width: 1000px;
-    height: 500px;
+    height: 510px;
 }
 .fc th {
     width: 140px;
@@ -74,3 +74,34 @@
     padding: 0;
     vertical-align: top;
 }
+
+.btnStyle{
+    background-color:#1E1E2D;
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+    padding: 4px 15px;
+    cursor: pointer;
+    border:none;
+}
+
+.inputStyling{
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+}
+
+.inputStyling:focus{
+    outline: none;
+}
+
+/*.table tbody td{*/
+/*    white-space: nowrap;*/
+
+/*}*/

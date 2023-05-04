@@ -19,9 +19,6 @@ function Schedule(){
                 <NewCalendar/>
 
             </div>
-            {/*<div>Schedule part</div>*/}
-
-
         </>
 
     )

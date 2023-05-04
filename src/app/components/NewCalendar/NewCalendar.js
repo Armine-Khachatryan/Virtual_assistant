@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import './NewCalendar.css';
-// import { Calendar } from '@fullcalendar/core';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -22,18 +21,17 @@ function NewCalendar(){
     ])
     const [eventData, setEventData]=useState({})
     const [calendarEvents, setCalendarEvents]=useState([
-      {
-          title: "event 1",
-          start: new Date("2023-05-05 20:00"),
-          id: "99999998"
-    },
+        {
+            title: "event 1",
+            start: new Date("2023-05-05 20:00"),
+            id: "99999998"
+        },
         {
             title: "event 2",
             start: new Date("2023-05-04 00:00"),
             id: "99999999"
         }
-  ])
-
+    ])
 
 
     useEffect(()=>{
@@ -54,6 +52,7 @@ function NewCalendar(){
         return () => draggable.destroy();
     },[])
 
+    console.log(eventData, "jjjjjjjjjjjjjjjjj")
 
     const eventClick = (eventClick) => {
         Alert.fire({
@@ -93,16 +92,21 @@ function NewCalendar(){
     };
 
     const handleDateClick = arg => {
+    if(isEditForm){
+        eventData.dayEl.style.backgroundColor = 'white';
+        setIsEditForm(prevState => !prevState)
+    }
         console.log(arg);
+        arg.dayEl.style.backgroundColor = 'grey';
         // {date: Fri May 05 2023 00:00:00 GMT+0400 (Armenia Standard Time), dateStr: '2023-05-05', allDay: true,
         //     dayEl: td.fc-day.fc-day-fri.fc-day-future.fc-daygrid-day, jsEvent: MouseEvent, …}
         setIsEditForm(true)
         setEventData({...arg});
     }
 
-   const handleChange = (name, value) => {
+    const handleChange = (name, value) => {
         console.log(name, value)
-        setEventName(value)
+        setEventName(value);
     };
 
     const saveForm = () => {
@@ -117,6 +121,7 @@ function NewCalendar(){
             setCalendarEvents([...calendarEventsCopy])
             setEventName("");
             setIsEditForm(prevState => !prevState)
+            eventData.dayEl.style.backgroundColor = 'white';
         }
     };
 
@@ -128,18 +133,24 @@ function NewCalendar(){
             {isEditForm && (
                 <div className={`form`}>
                     <input
+                        className={"inputStyling"}
                         value={eventName}
-                        // onChange={handleChange}
                         onChange={event =>{
-                            console.log(event, "evetn")
+                            console.log(event, "event")
                             handleChange("eventName", event.target.value)
-                        }
-
+                            }
                         }
                     />
-                    <div>
-                        <button type="button" onClick={() => saveForm()}>
+                    <div style={{marginTop:"10px"}}>
+                        <button className={"btnStyle"} type="button" onClick={() => saveForm()}>
                             Save
+                        </button>
+                        <button className={"btnStyle"}  style={{marginLeft: "7px"}} type="button" onClick={() => {
+                            setIsEditForm(false);
+                            setEventName("")
+                            eventData.dayEl.style.backgroundColor = 'white';
+                        }}>
+                            Close
                         </button>
                         {/* <button type='button'>Disquared</button>
             <button type='button'>Edit</button> */}
@@ -177,35 +188,36 @@ function NewCalendar(){
                         ))}
                     </div>
                 </Col>
-                <Col lg={9} sm={9} md={9}
-                     // style={{width:"800px", height:"1500px"}}
-                >
+                <Col lg={9} sm={9} md={9}>
                     <div className="demo-app-calendar" id="mycalendartest">
                         <FullCalendar
                             defaultView="dayGridMonth"
-                                      header={{
-                                          left: "prev,next today",
-                                          center: "title",
-                                          right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
-                                      }}
+                            header={{
+                                left: "prev,next today",
+                                center: "title",
+                                right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+                            }}
                             // rerenderDelay={10}
-                                      eventDurationEditable={false}
-                                      editable={true}
-                                      droppable={true}
-                                      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                                      events={calendarEvents}
-                                      eventClick={eventClick}
+                            eventBackgroundColor={"red"}
+                            eventTextColor={'orange'}
+                            eventDurationEditable={false}
+                            editable={true}
+                            droppable={true}
+                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                            events={calendarEvents}
+                            eventClick={eventClick}
                             dateClick={handleDateClick}
                         />
                     </div>
                 </Col>
             </Row>
         </div>
-
     )
 }
 
 
 export default NewCalendar;
+
+
 
 
