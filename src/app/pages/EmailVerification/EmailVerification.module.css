@@ -7,3 +7,13 @@
     color: #303030;
     max-width: 596px;
 }
+
+.error{
+    font-family:Inter_Regular,sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: red;
+    text-align: center;
+    margin-top: 5px;
+}

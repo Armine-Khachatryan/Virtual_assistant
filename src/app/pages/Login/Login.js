@@ -4,8 +4,10 @@ import ResetPasswordModal from "../../components/ResetPasswordModal/ResetPasswor
 import EyeImage from "../../assets/images/EyeImage.png";
 import ClosedEye from "../../assets/images/ClosedEye.png";
 import Button from "../../UI/Button/Button";
-// import {useDispatch} from "react-redux";
-// import {setUserData} from "../../features/User/UserSlice";
+import axios from "axios";
+import config from "../../config";
+import {useDispatch} from "react-redux";
+import {setUserData} from "../../features/User/UserSlice";
 import {useNavigate} from "react-router-dom";
 import MainImg from "../../assets/images/MainImg.png";
 import useValidation from "../../hooks/useValidation";
@@ -14,9 +16,9 @@ import classes from './Login.module.css';
 import NewPasswordModal from "../../components/NewPasswordModal/NewPasswordModal";
 
 
-function Login() {
+function Login(props) {
 
-    // const dispatch=useDispatch();
+    const dispatch=useDispatch();
     const navigate = useNavigate();
     const {isEmail, isPassword} = useValidation();
     const [signInError, setSignInError] = useState(null);
@@ -92,28 +94,48 @@ function Login() {
     }
 
 
-    // let postRegistration = async (body) => {
-    //     try {
-    //         let response = await axios.post(`${config.baseUrl}auth/register/`, body);
-    //         navigate(`/login`);
-    //     } catch (e) {
-    //         setSignUpError("Something went wrong");
-    //     }
-    // }
-    //
+    let postLogin = async (body) => {
+        let formData = new FormData();
+        formData = {
+            email: body.email,
+            password: body.password,
+        }
+        console.log(body, "body");
+        try {
+            let response = await axios.post(`${config.baseUrl}api/login`, formData);
+            console.log(response.data, "response login");
+            if(response.data.data.token){
+                sessionStorage.setItem('token', response.data.data.token);
+                console.log("hiiiiiiiiiiiiii")
+                props.setAccessToken(sessionStorage.getItem('token'));
+                localStorage.removeItem('email');
+                dispatch(setUserData(response.data.user));
+                navigate(`../my-profile/dashboard`)
+            }
+    } catch (error) {
+        console.log(error, "error message")
+            setSignInError("Something went wrong");
+    }
+}
+            //
+    //         if(checkedOne){
+    //             localStorage.setItem('token', response.data.token);
+    //             props.setAccessToken(localStorage.getItem('token'));
+    //             dispatch(setUserData(response.data))
+    //         }
+    //         if(response.data.token){
+    //             await closeAndResetLoginModal();
+    //         }
 
     const submitHandler =  event => {
         event.preventDefault();
         if (!formIsValid) {
             return;
         }
-        navigate(`dashboard`)
+        postLogin(body);
         resetEmail();
         resetPassword();
         showPassFalse();
-        // dispatch(setUserData({email:email}))
-        // navigate(`/`);
-        // await postRegistration(body);
     };
 
 
@@ -123,7 +145,7 @@ function Login() {
             <div className="left">
                 <div className="welcome">Welcome to </div>
                 <div className="virt">Virt Assistant</div>
-                <div className='sign'>Sign Up</div>
+                <div className='sign'>Sign In</div>
                 <form onSubmit={submitHandler}>
                     <Input
                         label='Email'

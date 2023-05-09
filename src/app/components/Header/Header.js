@@ -7,7 +7,11 @@ import Notifications from "../Notifications/Notifications";
 import GreyNotification from '../../assets/images/GreyNotification.svg';
 import BlueNotification from '../../assets/images/BlueNotification.svg';
 import classes from './Header.module.css';
+import {useDispatch} from "react-redux";
+import {setUserData} from "../../features/User/UserSlice";
 import {NavLink, useLocation} from "react-router-dom";
+import axios from "axios";
+import config from "../../config";
 
 
 
@@ -19,7 +23,9 @@ function Header(props){
     //  let userName = customer ? customer.email: ""
     const [dropdownShow, setDropDownShow] = useState(false);
     const [notificationsModalIsOpen, setNotificationsModalModalIsOpen] = useState(false);
-
+    const dispatch=useDispatch();
+    const customer = useSelector((state)=>state.user.data);
+    let userName = customer ? customer.full_name : '';
 
 
     function openNotificationsModal() {
@@ -76,7 +82,19 @@ function Header(props){
         props.onSetRouting("settings")
     }
 
-
+    let removeTokenHandler = async () => {
+        try {
+            let response = await axios.post(`${config.baseUrl}api/logout`);
+            console.log(response.data, "log out response");
+            sessionStorage.removeItem('token');
+            props.setAccessToken("");
+            localStorage.removeItem('email');
+            dispatch(setUserData(null))
+        }
+        catch (error) {
+            console.log(error, "error message")
+        }
+    }
 
     return(
         <>
@@ -87,7 +105,7 @@ function Header(props){
                         {!notificationsModalIsOpen ?   <img src={GreyNotification}  className={classes.cursor} alt=""/>
                         :  <img src={BlueNotification}  className={classes.cursor} alt=""/>}
                     </div>
-                    <div className={classes.hi}>Hi,Admin</div>
+                    <div className={classes.hi}>Hi, {userName}</div>
                     <div style={{cursor:"pointer"}} onClick={handleClickDropdown} ref={closeHeaderDropDawnRef}>
                         <img src={Person} alt=""/>
                     </div>
@@ -107,9 +125,10 @@ function Header(props){
                                 <img className={classes.dropdownImg} src={Settings} alt=""/> Settings
                             </NavLink>
                             <NavLink
-                                to="/login"
+                                to="/"
+                                onClick={removeTokenHandler}
                                 className={({isActive}) =>
-                                    classes['nav_link' + (pathname === '/login'  && isActive ?
+                                    classes['nav_link' + (pathname === '/'  && isActive ?
                                         '_active' : '')]
                                 }
                             >

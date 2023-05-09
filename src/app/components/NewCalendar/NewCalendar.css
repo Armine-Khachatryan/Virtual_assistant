@@ -1,12 +1,15 @@
 #external-events {
-    margin-top: 65px;
-    margin-right: 50px;
+    margin-top: 100px;
+    margin-right: 10px;
     width: 250px;
     height: auto;
     z-index: 2;
     padding: 0 10px;
     border: 1px solid #ccc;
     overflow-y: scroll;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    display: none;
 }
 
 #external-events .fc-event {
@@ -16,19 +19,22 @@
 
 #mycalendartest {
     margin-left: 50px;
+    padding: 30px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
 }
 .fc-direction-ltr{
     width: 1000px;
-    height: 510px;
+    height: 630px;
 }
 .fc th {
     width: 140px;
-    height: 50px;
+    height: 70px;
 }
-
 .fc td {
     width: 140px;
-    height: 50px;
+    height: 70px;
 }
 
 .fc-col-header{
@@ -85,6 +91,7 @@
     padding: 4px 15px;
     cursor: pointer;
     border:none;
+    margin-left: -460px;
 }
 
 .inputStyling{
@@ -95,13 +102,11 @@
     padding-top: 5px;
     padding-bottom: 5px;
     border: none;
+    margin-left: -500px;
+
 }
 
 .inputStyling:focus{
     outline: none;
 }
 
-/*.table tbody td{*/
-/*    white-space: nowrap;*/
-
-/*}*/

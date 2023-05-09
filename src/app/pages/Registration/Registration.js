@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import axios from "axios";
+import config from "../../config";
 import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
 import useInput from "../../hooks/useInput";
@@ -50,12 +52,32 @@ function Registration() {
         isTouched: passwordIsTouched
     } = useInput(isPassword);
 
+    const {
+        value: confirmPasswordValue,
+        isValid: confirmPasswordIsValid,
+        valueChangeHandler: confirmPasswordChangeHandler,
+        inputBlurHandler: confirmPasswordBlurHandler,
+        togglePassword: confirmPasswordShowHandler,
+        passwordShown: confirmPasswordShow,
+        reset: resetConfirmPassword,
+        isTouched: confirmPasswordIsTouched
+    } = useInput(isPassword);
+
     useEffect(() => {
         if (fullNameIsTouched || emailIsTouched
-            || passwordIsTouched) {
+            || passwordIsTouched || confirmPasswordIsTouched) {
             setSignUpError("")
         }
-    }, [fullNameIsTouched, emailIsTouched, passwordIsTouched]);
+    }, [fullNameIsTouched, emailIsTouched, passwordIsTouched, confirmPasswordIsTouched]);
+
+
+    let hasError = false;
+    let confirmPasswordMessage=null;
+    if(password !== confirmPasswordValue){
+        hasError = true;
+        confirmPasswordMessage = "Passwords do not match"
+    }
+
 
 
     let emailMessage = null;
@@ -68,39 +90,55 @@ function Registration() {
     let formIsValid = false;
     if (fullNameIsValid
         && emailIsValid
-        && passwordIsValid) {
+        && passwordIsValid
+        && confirmPasswordIsValid) {
         formIsValid = true;
     }
 
     const body = {
         full_name: fullName,
-        // username: email,
         email,
         password,
+        password_confirmation: confirmPasswordValue
     }
 
 
-    // let postRegistration = async (body) => {
-    //     try {
-    //         let response = await axios.post(`${config.baseUrl}auth/register/`, body);
-    //         navigate(`/login`);
-    //     } catch (e) {
-    //         setSignUpError("Something went wrong");
-    //     }
-    // }
-    //
+    let postRegistration = async (body)=> {
+        let formData = new FormData();
+        formData.append('full_name', body.full_name);
+        formData.append('email', body.email);
+        formData.append('password', body.password);
+        formData.append('password_confirmation', body.password_confirmation);
+        console.log(formData , "formData")
+        try {
+            console.log(formData , "formData")
+            let response = await axios.post(`${config.baseUrl}api/register`, formData);
+            console.log(response.data, "response data of registration")
+            if(response.data.data==="success") {
+                localStorage.setItem('email', body.email);
+                navigate(`/email-verification`);
+            }
+        }
+        catch (e) {
+            setSignUpError("Something went wrong");
+            console.log(e.response, 'registrationError');
+        }
+    }
+
+
 
     const submitHandler =  event => {
         event.preventDefault();
         if (!formIsValid) {
             return;
         }
+         postRegistration(body);
          resetFullName();
          resetEmail();
          resetPassword();
+         resetConfirmPassword();
          showPassFalse();
-         navigate(`/email-verification`);
-        // await postRegistration(body);
+         // navigate(`/email-verification`);
     };
 
 
@@ -156,13 +194,29 @@ function Registration() {
                             onBlur: passwordBlurHandler,
                         }}
                     />
+                    <Input
+                        label='Confirm password'
+                        error={signUpError}
+                        hasError={hasError && confirmPasswordIsTouched}
+                        errorText={confirmPasswordMessage}
+                        width='520px'
+                        image={confirmPasswordShow ? EyeImage : ClosedEye}
+                        onClick={confirmPasswordShowHandler}
+                        input={{
+                            value: confirmPasswordValue,
+                            placeholder: "Confirm your password",
+                            type: confirmPasswordShow ? "text" : "password",
+                            onChange: confirmPasswordChangeHandler,
+                            onBlur: confirmPasswordBlurHandler,
+                        }}
+                    />
                     <Button disabled={!formIsValid} width="520px" marginTop="16px"
                             type={"submit"}>Sign Up</Button>
                     {signUpError && <div className={classes.signUpError}>{signUpError}</div>}
                 </form>
                 <div className={classes.belowDiv}>Already have an account?
                     <span className={classes.sign}
-                          onClick={() => navigate(`/login`)}>Sign In</span>
+                          onClick={() => navigate(`/`)}>Sign In</span>
                 </div>
             </div>
             <div className={"right"}>

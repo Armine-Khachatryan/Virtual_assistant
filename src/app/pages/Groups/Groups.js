@@ -111,13 +111,6 @@ const renderSavedTags=tableInfo[arrayIndex]?.tagNumbersArray?.map((item, i)=>(
     ))
 
 
-    console.log(typeof (tableInfo[arrayIndex]?.tagNumbersArray?.length), "tableInfo[arrayIndex]?.tagNumbersArray?.length")
-
-
-
-    // console.log(tableInfo, "tableInfoAfterAdding")
-
-
     return (
         <>
             <div className={classes.groupWhole}>

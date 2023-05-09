@@ -17,10 +17,8 @@ function Schedule(){
             <div style={{display:"flex", justifyContent:"space-between"}}>
                 <Calendar onChange={setValue} value={value} />
                 <NewCalendar/>
-
             </div>
         </>
-
     )
 }
 
