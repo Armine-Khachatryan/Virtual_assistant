@@ -60,7 +60,7 @@ function App() {
                 <Route exact path="/congratulations" element={<Congratulations/>}/>
                 {accessToken ?
                     <>
-                        <Route path="/my-profile" element={<MyProfile/>}>
+                        <Route path="/my-profile" element={<MyProfile setAccessToken={setAccessToken}/>}>
                             <Route index path="dashboard" element={<Dashboard/>}/>
                             <Route path="groups" element={<Groups/>}/>
                             <Route path="schedule" element={<Schedule/>}/>

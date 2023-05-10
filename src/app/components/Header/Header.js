@@ -10,6 +10,7 @@ import classes from './Header.module.css';
 import {useDispatch} from "react-redux";
 import {setUserData} from "../../features/User/UserSlice";
 import {NavLink, useLocation} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import config from "../../config";
 
@@ -21,6 +22,7 @@ function Header(props){
     // const customer = useSelector((state)=>state?.user?.data);
     // console.log(customer, 22222222)
     //  let userName = customer ? customer.email: ""
+    const navigate =useNavigate();
     const [dropdownShow, setDropDownShow] = useState(false);
     const [notificationsModalIsOpen, setNotificationsModalModalIsOpen] = useState(false);
     const dispatch=useDispatch();
@@ -83,17 +85,22 @@ function Header(props){
     }
 
     let removeTokenHandler = async () => {
+        let token= sessionStorage.getItem('token');
         try {
-            let response = await axios.post(`${config.baseUrl}api/logout`);
+            let response = await axios.post(`${config.baseUrl}api/logout`,{}, {
+                   headers: {
+                       "Authorization": `Bearer ${token}`
+                    }
+                });
             console.log(response.data, "log out response");
-            sessionStorage.removeItem('token');
+            sessionStorage.clear();
             props.setAccessToken("");
-            localStorage.removeItem('email');
-            dispatch(setUserData(null))
+            dispatch(setUserData(null));
+            navigate('/')
         }
-        catch (error) {
+         catch (error) {
             console.log(error, "error message")
-        }
+         }
     }
 
     return(
@@ -124,16 +131,21 @@ function Header(props){
                             >
                                 <img className={classes.dropdownImg} src={Settings} alt=""/> Settings
                             </NavLink>
-                            <NavLink
-                                to="/"
-                                onClick={removeTokenHandler}
-                                className={({isActive}) =>
-                                    classes['nav_link' + (pathname === '/'  && isActive ?
-                                        '_active' : '')]
-                                }
-                            >
-                                <img className={classes.dropdownImg} src={SignOut} alt=""/>   Sign Out
-                            </NavLink>
+                            <div className={classes.signOutDiv} onClick={removeTokenHandler}>
+                                <img className={classes.dropdownImg} src={SignOut} alt=""/>
+                                Sign out
+                            </div>
+                            {/*<NavLink*/}
+                            {/*    // to="/"*/}
+                            {/*    onClick={removeTokenHandler}*/}
+                            {/*    to="/"*/}
+                            {/*    className={({isActive}) =>*/}
+                            {/*        classes['nav_link' + (pathname === '/'  && isActive ?*/}
+                            {/*            '_active' : '')]*/}
+                            {/*    }*/}
+                            {/*>*/}
+                            {/*    Sign Out*/}
+                            {/*</NavLink>*/}
                         </div>
                     }
                 </div>

@@ -4,8 +4,11 @@ import ClosingIcon from '../../assets/images/ClosingIcon.png';
 import useValidation from "../../hooks/useValidation";
 import useInput from "../../hooks/useInput";
 import Input from "../../UI/Input/Input";
+import axios from "axios";
+import config from "../../config";
 import Button from "../../UI/Button/Button";
 import EyeImage from "../../assets/images/EyeImage.png";
+import {useNavigate} from "react-router-dom";
 import ClosedEye from "../../assets/images/ClosedEye.png";
 
 
@@ -35,6 +38,7 @@ function NewPasswordModal(props){
     };
 
     const {isPassword}=useValidation();
+    const navigate = useNavigate();
     const [newPasswordError, setNewPasswordError] = useState(null);
 
 
@@ -94,36 +98,36 @@ function NewPasswordModal(props){
         setNewPasswordError("")
     }
 
-    // const postChangePassword = async () => {
-    //     let formData = new FormData();
-    //     formData = {
-    //         email: props.emailValue,
-    //         password: password,
-    //         password_confirmation:confirmPasswordValue
-    //     }
-    //     console.log(formData, "formData")
-    //     try {
-    //         let response = await axios.post(`${config.baseUrl}api/reset/password`, formData);
-    //         console.log(response.data, "response.data");
-    //         if(response.data.success===true){
-    //             props.closeNewPassworModal();
-    //             props.openLoginModal()
-    //         }
-    //     } catch (error) {
-    //         console.log(error, "resetPasswordModalError")
-    //         setChangePasswordError("Something went wrong");
-    //     }
-    // }
-    //
+    console.log(typeof confirmPasswordValue)
+
+    console.log(props)
+    const postNewPassword = async () => {
+        let formData = new FormData();
+        formData.append('email', props.emailValue)
+        formData.append('password', password)
+        formData.append('password_confirmation', confirmPasswordValue);
+        formData.append('code', props.codeInputValue)
+        try {
+            let response = await axios.post(`${config.baseUrl}api/reset/password`, formData)
+            if(response.data.success===true){
+                props.closeNewPasswordModal();
+                navigate('/login');
+                setNewPasswordError("")
+            }
+        } catch (error) {
+            setNewPasswordError("Something went wrong.")
+        }
+    }
+
     const submitHandler =  event => {
         event.preventDefault();
         if (!formIsValid) {
             return;
         }
-        // postChangePassword();
+        postNewPassword();
         resetPassword();
-        showPassFalse()
         resetConfirmPassword()
+        showPassFalse();
     }
 
     const handleKeyPress = event => {

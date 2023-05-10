@@ -86,3 +86,19 @@
 .cursor{
     cursor: pointer;
 }
+
+.signOutDiv{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: Inter_Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1E1E2D;
+}
+
+.signOutDiv:hover{
+    color: #1877F2;
+}

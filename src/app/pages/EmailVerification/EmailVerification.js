@@ -23,6 +23,7 @@ function EmailVerification() {
         try {
             let response = await axios.post(`${config.baseUrl}api/email/verify/resend`, formData);
             console.log(response.data, "response data of resending to email")
+            setVerifyEmailError("")
             // if(response.data.success===true){
             //     // await navigate(`/login`)
             //     await localStorage.removeItem('email');

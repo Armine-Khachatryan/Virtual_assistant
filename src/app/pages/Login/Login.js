@@ -14,6 +14,7 @@ import useValidation from "../../hooks/useValidation";
 import useInput from "../../hooks/useInput";
 import classes from './Login.module.css';
 import NewPasswordModal from "../../components/NewPasswordModal/NewPasswordModal";
+import ResetCodeModal from "../../components/ResetCodeModal/ResetCodeModal";
 
 
 function Login(props) {
@@ -21,9 +22,12 @@ function Login(props) {
     const dispatch=useDispatch();
     const navigate = useNavigate();
     const {isEmail, isPassword} = useValidation();
+    const [codeInputValue, setCodeInputValue] =useState();
     const [signInError, setSignInError] = useState(null);
     const [resetPasswordModalIsOpen, setResetPasswordModalIsOpen] = useState(false);
+    const [resetCodeModalIsOpen, setResetCodeModal] = useState(false);
     const [newPasswordModalIsOpen, setNewPasswordModalIsOpen] = useState(false);
+    const [emailValue, setEmailValue]=useState("");
 
     function openResetPasswordModal() {
         setResetPasswordModalIsOpen(true)
@@ -33,6 +37,13 @@ function Login(props) {
         setResetPasswordModalIsOpen(false)
     }
 
+    function openResetCodeModal() {
+        setResetCodeModal(true)
+    }
+    function closeResetCodeModal() {
+        setResetCodeModal(false)
+    }
+
 
     function openNewPasswordModal() {
         setNewPasswordModalIsOpen(true)
@@ -40,6 +51,11 @@ function Login(props) {
 
     function closeNewPasswordModal() {
         setNewPasswordModalIsOpen(false)
+    }
+
+
+    const saveEmail =(emailData)=>{
+        setEmailValue (emailData);
     }
 
     const {
@@ -181,12 +197,22 @@ function Login(props) {
                     <div className={classes.forgot} onClick={openResetPasswordModal}>Forgot password?</div>
                     <ResetPasswordModal resetPasswordModalIsOpen={resetPasswordModalIsOpen}
                                         closeResetPasswordModal={closeResetPasswordModal}
-                                        newPasswordModalIsOpen={newPasswordModalIsOpen}
-                                        openNewPasswordModal={openNewPasswordModal}
-                                        closeNewPasswordModal={closeNewPasswordModal}
+                                        onHandleSave={saveEmail}
+                                        // newPasswordModalIsOpen={newPasswordModalIsOpen}
+                                        openResetCodeModal={openResetCodeModal}
+                                        // closeNewPasswordModal={closeNewPasswordModal}
                     />
-                    <NewPasswordModal closeNewPasswordModal={closeNewPasswordModal}
-                                         newPasswordModalIsOpen={newPasswordModalIsOpen}/>
+
+                    <ResetCodeModal resetCodeModalIsOpen={resetCodeModalIsOpen}
+                                    openNewPasswordModal={openNewPasswordModal}
+                                    closeResetCodeModal={closeResetCodeModal}
+                                    emailValue={emailValue}
+                                    onSetCodeInputValue={setCodeInputValue}
+                    />
+                    <NewPasswordModal  closeNewPasswordModal={closeNewPasswordModal}
+                                       newPasswordModalIsOpen={newPasswordModalIsOpen}
+                                       emailValue={emailValue}
+                                       codeInputValue={codeInputValue}/>
                     <Button disabled={!formIsValid} width="520px"
                             marginTop="48px"
                             type={"submit"}>Sign In</Button>

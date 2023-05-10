@@ -1,0 +1,94 @@
+.modalVerifyCode{
+    margin: auto;
+    padding-top: 78px;
+    padding-bottom: 78px;
+}
+
+.verifyTitle{
+    font-family: Inter_Medium, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+    color: #484848;
+    margin-bottom: 27px;
+}
+
+.subTitle{
+    font-family: Inter-Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 17px;
+    margin-top: 74px;
+    color: #818181;
+}
+.centre{
+    display: flex;
+    justify-content: center;
+}
+
+.verifyBtn{
+    background:#3C78F0;
+    border-radius: 2px;
+    border: none;
+    text-align: center;
+    max-width:341px;
+    width: 100%;
+    font-family: Inter-Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    margin: 22px auto 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.verifyBtn:disabled{
+    cursor: not-allowed;
+}
+
+.inputWholeDiv{
+    max-width:323px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inputDiv{
+    margin-right: 15px;
+}
+
+.codeAndSend{
+    display: flex;
+    align-items: center;
+    font-family: Inter-Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #818181;
+    margin-bottom: 66px;
+    justify-content: center;
+    margin-top: 26px;
+}
+
+.sendAgain{
+    color:#3C78F0;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.verifyError{
+    color: red;
+    text-align: center;
+    margin-top: 5px;
+}

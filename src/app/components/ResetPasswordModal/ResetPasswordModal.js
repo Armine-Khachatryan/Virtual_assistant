@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Modal from 'react-modal';
+import axios from "axios";
+import config from "../../config";
 import ClosingIcon from '../../assets/images/ClosingIcon.png';
 import classes from './ResetPasswordModal.module.css';
 import useValidation from "../../hooks/useValidation";
@@ -32,6 +34,7 @@ function ResetPasswordModal(props){
 
 
     const {isEmail} = useValidation();
+    const [resetPasswordError, setResetPasswordError]= useState(null);
 
     const {
         value: email,
@@ -40,8 +43,14 @@ function ResetPasswordModal(props){
         valueChangeHandler: emailChangeHandler,
         inputBlurHandler: emailBlurHandler,
         reset: resetEmail,
-        // isTouched: emailIsTouched
+        isTouched: emailIsTouched
     } = useInput(isEmail);
+
+    useEffect(() => {
+        if(emailIsTouched){
+            setResetPasswordError("")
+        }
+    },[emailIsTouched]);
 
 
     let emailMessage = null;
@@ -56,22 +65,44 @@ function ResetPasswordModal(props){
         formIsValid = true;
     }
 
+    const closeAndResetPasswordModal=()=>{
+        props.closeResetPasswordModal();
+        resetEmail();
+        setResetPasswordError("")
+    }
+
+
+    const postResetPassword = async (email) => {
+        let formData = new FormData();
+        formData.append('email', email)
+        try {
+            let response = await axios.post(`${config.baseUrl}api/forgot/password`, formData);
+            if(response.data.success===true){
+                props.closeResetPasswordModal();
+                props.openResetCodeModal();
+                props.onHandleSave(email);
+                resetEmail();
+                setResetPasswordError("")
+            }
+        } catch (error) {
+            console.log(error, "forgetPasswordModalError")
+            setResetPasswordError("Something went wrong");
+        }
+    }
+
+
     const submitHandler =  event => {
         event.preventDefault();
         if (!formIsValid) {
             return;
         }
-        resetEmail();
+        postResetPassword(email);
     }
 
-    const openAndClose=()=>{
-        props.openNewPasswordModal();
-        props.closeResetPasswordModal()
-    }
-
-    const closeAndResetPasswordModal=()=>{
-        props.closeResetPasswordModal();
-        resetEmail()
+    const handleKeyPress = event => {
+        if (event.key === 'Enter') {
+            submitHandler()
+        }
     }
 
 
@@ -102,14 +133,17 @@ function ResetPasswordModal(props){
                             placeholder: "Type your email",
                             type: "email",
                             onChange: emailChangeHandler,
-                            onBlur: emailBlurHandler
+                            onBlur: emailBlurHandler,
+                            onKeyPress:handleKeyPress
                         }}
                     />
                     <Button disabled={!formIsValid} width="713px"
                             marginTop="-8px"
-                            type={"Reset Password"}>Sign In</Button>
+                            type={"submit"}
+                            // type={"Reset Password"}
+                    >Reset Password</Button>
+                    {resetPasswordError && <div className={classes.resetPasswordError}>{resetPasswordError}</div>}
                 </form>
-                <div className={classes.resetLink} onClick={openAndClose}>Resent the link</div>
             </Modal>
             </>
 

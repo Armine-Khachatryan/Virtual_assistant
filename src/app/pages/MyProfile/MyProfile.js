@@ -11,7 +11,7 @@ import {setUserData} from "../../features/User/UserSlice";
 
 
 
-function MyProfile() {
+function MyProfile(props) {
 
     const customer = useSelector((state)=>state.user.data);
     const navigate = useNavigate();
@@ -56,7 +56,7 @@ function MyProfile() {
                     <div className={classes.profileWhole}>
                         <Sidebar onSetRouting={setRouting} activeSideBar={activeSideBar}/>
                         <div className={classes.profileRight}>
-                            <Header onSetRouting={setRouting}/>
+                            <Header onSetRouting={setRouting} setAccessToken={props.setAccessToken}/>
                             {pathname === '/my-profile/dashboard' ? <div className="insideDivDashboard"> <Outlet/></div>:
                                 <div className="insideDiv">
                                     <Outlet/>
