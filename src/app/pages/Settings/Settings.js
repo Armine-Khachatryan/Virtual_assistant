@@ -3,14 +3,18 @@ import classes from './Settings.module.css';
 import ChangePasswordModal from "../../components/ChangePasswordModal/ChangePasswordModal";
 import Input from "../../UI/Input/Input";
 import AddNewAccountModal from "../../components/AddNewAccountModal/AddNewAccountModal";
+import {useSelector} from "react-redux";
 
 
-function Settings() {
+function Settings(props) {
 
     const [showProfileEdits, setShowProfileEdits]=useState(false);
     const [changePasswordModalIsOpen, setChangePasswordModalIsOpen] = useState(false);
     const [addNewAccountModalIsOpen, setAddNewAccountModalIsOpen] = useState(false);
-
+    const customer = useSelector((state)=>state.user.data);
+    let userName = customer ? customer.full_name : '';
+    let userEmail = customer ? customer.email : '';
+    let verified = customer?.email_verified_at ? "Verified"  : 'Unverified';
 
     function openChangePasswordModal() {
         setChangePasswordModalIsOpen(true)
@@ -29,9 +33,10 @@ function Settings() {
     }
 
 
+
     const [values, setValues] = useState({
-        fullName: 'Name Surname',
-        email: 'useremail@gmail.com',
+        fullName: userName,
+        email: userEmail,
         facebookAccount:"Account link/details"
     });
 
@@ -74,7 +79,6 @@ function Settings() {
             facebookAccount : facebookAccountMessage
         });
         if (valid) {
-            console.log("dflkdjlfkjdljf")
             setShowProfileEdits(prevState => !prevState)
         }
     }
@@ -84,9 +88,14 @@ function Settings() {
             <div className={classes.settingsWhole}>
                 <div className={classes.settingsUpPart}>
                     <div className={classes.settingsTitle}>Profile Details</div>
-                    <div className={classes.settingsButton}
-                         onClick={handleSubmit}>
-                        {!showProfileEdits? "Edit Profile" : "Save"}</div>
+                    <div className={classes.buttonsDiv}>
+                        {showProfileEdits  &&
+                            <div className={classes.settingsButton}
+                                 onClick={()=>setShowProfileEdits(false)}>Cancel</div>}
+                        <div className={classes.settingsButton}
+                             onClick={handleSubmit}>
+                            {!showProfileEdits? "Edit Profile" : "Save"}</div>
+                    </div>
                 </div>
                 {!showProfileEdits ? <>
                 <div className={classes.settingsPart}>
@@ -95,8 +104,9 @@ function Settings() {
                 </div>
                 <div className={classes.settingsPart}>
                     <div className={classes.settingsName}>Email</div>
-                    <div className={classes.settingsData}>useremail@gmail.com</div>
-                    <div className={classes.greenDiv}>Verified</div>
+                    <div className={classes.settingsData}>{values.email}</div>
+                    { customer?.email_verified_at ? <div className={classes.greenDiv}>Verified</div>:
+                        <div className={classes.redDiv}>Unverified</div>}
                 </div>
                 <div className={classes.settingsPart}>
                     <div className={classes.settingsName}>Facebook Account</div>
@@ -159,7 +169,8 @@ function Settings() {
                     </>}
             </div>
             <ChangePasswordModal changePasswordModalIsOpen={changePasswordModalIsOpen}
-                                 closeChangePasswordModal={closeChangePasswordModal}/>
+                                 closeChangePasswordModal={closeChangePasswordModal}
+                                 accessToken={props.accessToken}/>
             <AddNewAccountModal addNewAccountModalIsOpen={addNewAccountModalIsOpen}
                                 closeAddNewAccountModal={closeAddNewAccountModal}/>
         </>

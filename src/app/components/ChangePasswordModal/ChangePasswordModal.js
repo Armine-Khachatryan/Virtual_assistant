@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Modal from 'react-modal';
+import axios from "axios";
+import config from "../../config";
 import ClosingIcon from '../../assets/images/ClosingIcon.png';
 import useValidation from "../../hooks/useValidation";
 import useInput from "../../hooks/useInput";
@@ -56,6 +58,7 @@ function ChangePasswordModal(props) {
     const {
         value:newPassword,
         isValid:newPasswordIsValid,
+        hasError:newPasswordHasError,
         valueChangeHandler: newPasswordChangeHandler,
         inputBlurHandler:newPasswordBlurHandler,
         togglePassword: newPasswordShowHandler,
@@ -75,19 +78,10 @@ function ChangePasswordModal(props) {
     },[oldPasswordIsTouched,newPasswordIsTouched]);
 
 
-    let hasError = false;
-    let newPasswordMessage = null;
-    if(oldPassword !== newPassword){
-        hasError = true;
-        newPasswordMessage = "Passwords do not match"
-    }
-
-
     let formIsValid = false;
-    if (oldPasswordIsValid && newPasswordIsValid && oldPassword === newPassword) {
+    if (oldPasswordIsValid && newPasswordIsValid) {
         formIsValid = true;
     }
-
 
 
     function closeAndResetChangePasswordModal (){
@@ -98,36 +92,32 @@ function ChangePasswordModal(props) {
         setChangePasswordError("")
     }
 
-    // const postChangePassword = async () => {
-    //     let formData = new FormData();
-    //     formData = {
-    //         email: props.emailValue,
-    //         password: password,
-    //         password_confirmation:confirmPasswordValue
-    //     }
-    //     console.log(formData, "formData")
-    //     try {
-    //         let response = await axios.post(`${config.baseUrl}api/reset/password`, formData);
-    //         console.log(response.data, "response.data");
-    //         if(response.data.success===true){
-    //             props.closeNewPassworModal();
-    //             props.openLoginModal()
-    //         }
-    //     } catch (error) {
-    //         console.log(error, "resetPasswordModalError")
-    //         setChangePasswordError("Something went wrong");
-    //     }
-    // }
-    //
+    const postChangePassword =  () => {
+        let formData = new FormData();
+        formData.append("old_password", oldPassword);
+        formData.append("new_password", newPassword);
+          axios.post(`${config.baseUrl}api/settings/change/password`, formData, {
+                headers: {
+                    "Authorization": `Bearer ${props.accessToken}`
+                }
+            }
+            ).then(() => {
+              resetOldPassword();
+              showPassFalse();
+              resetNewPassword();
+              props.closeChangePasswordModal();
+              setChangePasswordError("")
+        })  .catch(e => {
+                setChangePasswordError("Something went wrong.")
+        })
+    }
+
     const submitHandler =  event => {
         event.preventDefault();
         if (!formIsValid) {
             return;
         }
-        // postChangePassword();
-        resetOldPassword();
-        showPassFalse()
-        resetNewPassword()
+        postChangePassword();
     }
 
     const handleKeyPress = event => {
@@ -174,8 +164,9 @@ function ChangePasswordModal(props) {
                         label='New Password'
                         error={changePasswordError}
                         width='520px'
-                        hasError = {hasError && newPasswordIsTouched}
-                        errorText={newPasswordMessage}
+                        hasError = {newPasswordHasError}
+                        errorText="Password must contain one lowercase, one uppercase, one number,
+                         one special character, 8 characters minimum"
                         image ={newPasswordShow ? EyeImage : ClosedEye}
                         onClick={newPasswordShowHandler}
                         input={{
@@ -189,7 +180,8 @@ function ChangePasswordModal(props) {
                     />
                     <Button disabled={!formIsValid} width="520px"
                             marginTop="-8px"
-                            type={"Reset Password"}>Save Changes</Button>
+                            type={"submit"}
+                    >Save Changes</Button>
                 </form>
             </Modal>
         </>

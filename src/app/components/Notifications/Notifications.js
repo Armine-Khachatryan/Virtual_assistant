@@ -32,7 +32,7 @@ function Notifications(props){
 
     const customStyles = {
         content: {
-            padding: '16px 24px',
+            padding: '16px 20px',
             maxWidth: '427px',
             width: '100%',
             top: '38%',

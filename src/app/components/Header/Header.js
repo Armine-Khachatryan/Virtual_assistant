@@ -19,9 +19,6 @@ import config from "../../config";
 function Header(props){
 
 
-    // const customer = useSelector((state)=>state?.user?.data);
-    // console.log(customer, 22222222)
-    //  let userName = customer ? customer.email: ""
     const navigate =useNavigate();
     const [dropdownShow, setDropDownShow] = useState(false);
     const [notificationsModalIsOpen, setNotificationsModalModalIsOpen] = useState(false);
@@ -92,7 +89,6 @@ function Header(props){
                        "Authorization": `Bearer ${token}`
                     }
                 });
-            console.log(response.data, "log out response");
             sessionStorage.clear();
             props.setAccessToken("");
             dispatch(setUserData(null));
@@ -135,17 +131,6 @@ function Header(props){
                                 <img className={classes.dropdownImg} src={SignOut} alt=""/>
                                 Sign out
                             </div>
-                            {/*<NavLink*/}
-                            {/*    // to="/"*/}
-                            {/*    onClick={removeTokenHandler}*/}
-                            {/*    to="/"*/}
-                            {/*    className={({isActive}) =>*/}
-                            {/*        classes['nav_link' + (pathname === '/'  && isActive ?*/}
-                            {/*            '_active' : '')]*/}
-                            {/*    }*/}
-                            {/*>*/}
-                            {/*    Sign Out*/}
-                            {/*</NavLink>*/}
                         </div>
                     }
                 </div>

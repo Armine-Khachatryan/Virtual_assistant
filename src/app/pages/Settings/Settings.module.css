@@ -145,3 +145,33 @@
     line-height: 150%;
     color: #A3A7B9;
 }
+
+.redDiv{
+    margin-left: 16px;
+    width: 93px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    font-family: Inter_Medium, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 150%;
+    color: #FFFFFF;
+    background: red;
+    border-radius: 8px;
+}
+
+.buttonsDiv{
+    display: flex;
+    gap: 10px;
+}
+
+@media only screen and (min-width:768px) and (max-width: 1000px){
+    .settingsWhole{
+        padding: 24px 15px;
+    }
+    .settingsButton {
+        width: 140px;
+    }
+}

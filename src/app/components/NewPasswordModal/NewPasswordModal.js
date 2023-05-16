@@ -98,9 +98,7 @@ function NewPasswordModal(props){
         setNewPasswordError("")
     }
 
-    console.log(typeof confirmPasswordValue)
 
-    console.log(props)
     const postNewPassword = async () => {
         let formData = new FormData();
         formData.append('email', props.emailValue)
@@ -148,7 +146,7 @@ function NewPasswordModal(props){
                     <div className="modalTitle">Reset your password</div>
                     <div className="closingImgDiv" onClick={closeAndResetNewPasswordModal}><img src={ClosingIcon} alt=""/></div>
                 </div>
-                <form
+                <form className="formStyle"
                     onSubmit={submitHandler}
                 >
                     <Input

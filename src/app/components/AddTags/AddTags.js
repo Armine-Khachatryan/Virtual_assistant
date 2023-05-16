@@ -50,6 +50,7 @@ function AddTags(props){
             onRequestClose={closeAndReset}
             style={customStyles}
             ariaHideApp={false}
+            // className="youClass"
         >
             <div className="modalUpPart">
                 <div className="modalTitle">Add tags</div>

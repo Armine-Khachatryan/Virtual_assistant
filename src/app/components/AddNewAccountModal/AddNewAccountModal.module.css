@@ -28,3 +28,12 @@
     margin-right:8px;
     object-fit:contain;
 }
+
+@media only screen and (min-width:768px) and (max-width: 1030px){
+    .buttonsDiv{
+        flex-direction: column;
+    }
+    .buttonFBLinkedIn{
+        width: 260px
+    }
+}

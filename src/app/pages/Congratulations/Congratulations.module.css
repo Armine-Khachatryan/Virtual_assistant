@@ -9,3 +9,11 @@
     color: #1E1E2D;
     margin-top: 68px;
 }
+
+
+@media only screen and (min-width:768px) and (max-width: 1024px) {
+    .textCongratulation{
+        font-size: 16px;
+        margin-top:22px;
+    }
+}

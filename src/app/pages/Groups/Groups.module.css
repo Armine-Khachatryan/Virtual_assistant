@@ -69,6 +69,7 @@
     font-size: 16px;
     line-height: 150%;
     color: #009DF6;
+    white-space: nowrap;
 }
 
 .activeBlue{
@@ -98,4 +99,23 @@
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 200px;
+}
+
+@media only screen and (min-width:768px) and (max-width: 1024px) {
+    .groupWhole{
+        padding: 10px;
+        overflow-y: auto;
+    }
+    .plusImg{
+        margin-right: 0px;
+    }
+}
+@media only screen and (min-width:425px) and (max-width: 768px) {
+    .groupWhole{
+        padding: 10px;
+        overflow-y: auto;
+    }
+    .plusImg{
+        margin-right: 0px;
+    }
 }

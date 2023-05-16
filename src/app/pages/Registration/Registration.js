@@ -109,11 +109,8 @@ function Registration() {
         formData.append('email', body.email);
         formData.append('password', body.password);
         formData.append('password_confirmation', body.password_confirmation);
-        console.log(formData , "formData")
         try {
-            console.log(formData , "formData")
             let response = await axios.post(`${config.baseUrl}api/register`, formData);
-            console.log(response.data, "response data of registration")
             if(response.data.data==="success") {
                 localStorage.setItem('email', body.email);
                 navigate(`/email-verification`);
@@ -121,7 +118,6 @@ function Registration() {
         }
         catch (e) {
             setSignUpError("Something went wrong");
-            console.log(e.response, 'registrationError');
         }
     }
 

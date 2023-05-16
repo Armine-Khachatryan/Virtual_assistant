@@ -47,3 +47,35 @@
     color: #FFFFFF;
     margin-left: 8px;
 }
+
+@media only screen and (min-width:768px) and (max-width: 1024px) {
+    .buttonsDiv{
+       flex-direction: column;
+    }
+
+    .profileText{
+        max-width: 500px
+    }
+    .profileText{
+        font-size: 17px;
+        line-height: 36px;
+    }
+}
+
+/*@media only screen and (min-width:425px) and (max-width: 768px) {*/
+/*    .buttonsDiv{*/
+/*        flex-direction: column;*/
+/*    }*/
+
+/*    .profileText{*/
+/*        max-width: 350px;*/
+/*        width: 100%;*/
+/*    }*/
+/*    .btnProfile{*/
+/*        width: 250px;*/
+/*    }*/
+
+/*    .profileDiv{*/
+/*        padding-top: 60px;*/
+/*    }*/
+/*}*/

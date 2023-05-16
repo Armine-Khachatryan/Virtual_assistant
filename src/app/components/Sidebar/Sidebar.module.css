@@ -40,3 +40,10 @@
     color: #A3A7B9;
     margin-left: 8px;
 }
+@media only screen and (max-width: 1440px) {
+    .sideBarWhole {
+        min-width: 140px;
+        width: 100%;
+        max-width: 200px;
+    }
+}

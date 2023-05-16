@@ -11,7 +11,6 @@ function AfterZoomCall(){
                 After first zoom call in this part you will see your analytics about the groups
             </div>
         </div>
-
     )
 }
 

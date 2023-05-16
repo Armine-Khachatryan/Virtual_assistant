@@ -43,7 +43,6 @@ function MyProfile(props) {
                     "Authorization": `Bearer ${token}`
                 }
             });
-            console.log(response.data, "auth request data");
             dispatch(setUserData(response.data));
         } catch (error) {
             console.log(error.response, 'auth request  error response');

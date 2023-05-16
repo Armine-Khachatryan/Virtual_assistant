@@ -85,7 +85,6 @@ function ResetPasswordModal(props){
                 setResetPasswordError("")
             }
         } catch (error) {
-            console.log(error, "forgetPasswordModalError")
             setResetPasswordError("Something went wrong");
         }
     }
@@ -121,7 +120,7 @@ function ResetPasswordModal(props){
                 <div className={classes.modalText}>Lost your password? Please enter your email address. You will
                     receive a link to create a new password via email.
                 </div>
-                <form onSubmit={submitHandler}>
+                <form className="formStyle" onSubmit={submitHandler} >
                     <Input
                         label='Email'
                         width='713px'

@@ -7,6 +7,7 @@
     padding: 0 10px;
     border: 1px solid #ccc;
     overflow-y: scroll;
+    /*overflow-x: scroll;*/
     background-color: #FFFFFF;
     border-radius: 16px;
     display: none;
@@ -110,3 +111,108 @@
     outline: none;
 }
 
+@media only screen and (min-width:1450px) and (max-width: 2001px) {
+    .inputStyling{
+        margin-left: -350px;
+    }
+    .btnStyle{
+        margin-left: -350px;
+    }
+}
+
+@media only screen and (min-width:1350px) and (max-width: 1700px) {
+    .fc th {
+        width: 95px;
+        height: 40px;
+    }
+
+    .fc td {
+        width: 95px;
+        height: 40px;
+    }
+
+    .fc-direction-ltr {
+        width: 700px;
+        height: 400px;
+    }
+    .inputStyling{
+        margin-left: -350px;
+    }
+    .btnStyle{
+        margin-left: -350px;
+    }
+}
+
+@media only screen and (min-width:1000px) and (max-width: 1349px) {
+    .fc th {
+        width: 50px;
+        height: 25px;
+    }
+    .fc td {
+        width: 50px;
+        height: 25px;
+    }
+    .fc-direction-ltr{
+        width: 380px;
+        height: 450px;
+    }
+    .row{
+        margin-right: 0;
+    }
+    #mycalendartest{
+        padding: 30px 10px;
+    }
+    .inputStyling{
+        margin-left: -350px;
+    }
+    .btnStyle{
+        margin-left: -350px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width: 1000px) {
+    .fc th {
+        width: 40px;
+        height: 25px;
+    }
+
+    .fc td {
+        width: 40px;
+        height: 25px;
+    }
+
+    .fc-direction-ltr {
+        width: 250px;
+        height: 450px;
+    }
+
+    .row {
+        margin-right: 0;
+        margin-left: -40px;
+    }
+
+    #mycalendartest {
+        padding: 30px 10px;
+    }
+
+    .fc-scrollgrid {
+        overflow-x: scroll !important
+    }
+
+    .fc .fc-scroller {
+        overflow-x: scroll !important
+    }
+
+    .fc-daygrid-body {
+        overflow-x: scroll;
+    }
+    .inputStyling{
+        margin-left: -320px;
+    }
+    .btnStyle{
+        margin-left: -320px;
+    }
+    .fc-toolbar-chunk{
+        display: flex;
+    }
+}

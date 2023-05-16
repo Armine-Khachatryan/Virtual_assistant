@@ -15,19 +15,12 @@ function EmailVerification() {
 
 
     let postVerifyEmail = async () => {
-        console.log("hi")
         let email=localStorage.getItem('email');
-        console.log(email);
         let formData = new FormData();
         formData.append('email',email)
         try {
             let response = await axios.post(`${config.baseUrl}api/email/verify/resend`, formData);
-            console.log(response.data, "response data of resending to email")
             setVerifyEmailError("")
-            // if(response.data.success===true){
-            //     // await navigate(`/login`)
-            //     await localStorage.removeItem('email');
-            // }
         } catch (error) {
             setVerifyEmailError("Something went wrong");
         }

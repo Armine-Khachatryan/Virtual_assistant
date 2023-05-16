@@ -10,11 +10,10 @@ function Schedule(){
 
     const [value, setValue] = useState(new Date());
 
-    console.log(value, "value")
 
     return(
         <>
-            <div style={{display:"flex", justifyContent:"space-between"}}>
+            <div className="mainStyle">
                 <Calendar onChange={setValue} value={value} />
                 <NewCalendar/>
             </div>

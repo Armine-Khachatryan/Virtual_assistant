@@ -17,3 +17,21 @@
     text-align: center;
     margin-top: 5px;
 }
+
+@media only screen and (min-width:1024px) and (max-width: 1440px){
+    .textVerify{
+        max-width: 500px;
+    }
+}
+
+@media only screen and (min-width:850px) and (max-width: 1024px){
+    .textVerify{
+        max-width: 400px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width: 850px){
+    .textVerify{
+        max-width: 330px;
+    }
+}

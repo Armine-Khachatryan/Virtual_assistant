@@ -122,6 +122,64 @@ html{
     z-index: 999;
 }
 
+/*.youClass{*/
+/*    top: 55% !important;*/
+/*    left: 50% !important;*/
+/*    right: auto !important;*/
+/*    bottom: auto !important;*/
+/*    margin-right: 50% !important;*/
+/*    transform: translate(-50%, -50%) !important;*/
+/*}*/
+
+@media only screen and (min-width:768px) and (max-width: 1024px) {
+    .insideDiv{
+        padding: 10px;
+        height: calc(100vh - 125px);
+    }
+    .insideDivDashboard {
+        padding: 10px;
+        height: calc(100vh - 90px);
+    }
+    .virt{
+        font-size: 30px;
+        line-height: 36px;
+        padding-bottom: 16px;
+        width:240px;
+    }
+    .sign{
+        margin-bottom: 22px;
+    }
+
+}
+
+@media only screen and (min-width:900px) and (max-width: 1024px) {
+    .ReactModalPortal .ReactModal__Overlay {
+        max-width:600px !important;
+        left: 20% !important
+    }
+    /*.youClass{*/
+    /*    left:60% !important;*/
+    /*    position: absolute;*/
+    /*}*/
+    .formStyle{
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width: 900px) {
+    .ReactModalPortal .ReactModal__Overlay {
+        max-width:500px !important;
+        left: 20% !important;
+    }
+    .formStyle{
+        margin: auto;
+    }
+
+    /*.youClass{*/
+    /*    left:60% !important;*/
+    /*    position: absolute;*/
+    /*}*/
+}
 @font-face {
     font-family: Inter_Light;
     src: url(app/assets/fonts/Inter/Inter_Light.ttf);

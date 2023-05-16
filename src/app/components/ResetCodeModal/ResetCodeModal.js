@@ -4,9 +4,7 @@ import Modal from 'react-modal';
 import axios from "axios";
 import config from "../../config";
 import classes from './ResetCodeModal.module.css';
-// import {Input} from "reactstrap";
-// import useInput from "../../hooks/useInput";
-// import useValidation from "../../hooks/useValidation";
+
 
 
 function ResetCodeModal(props) {
@@ -42,11 +40,9 @@ function ResetCodeModal(props) {
                 setResetCodeError("");
             })
             .catch(e => {
-                console.log(e, "forgetPasswordModalError")
                 setResendAgainCodeMessage("Something went wrong.")
             })
     }
-    console.log(inputValue)
 
 
     let postResetCodePassword = async () => {

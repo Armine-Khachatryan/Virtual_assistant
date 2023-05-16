@@ -19,6 +19,8 @@ function Groups() {
         // id: Math.random() * (new Date().getTime() * performance.now())
     })))
 
+    console.log(tableInfo)
+
     const [addTagsModalIsOpen, setAddTagsModalIsOpen] = useState(false);
     const [yourTagsModalIsOpen, setYourTagsModalIsOpen] = useState(false);
     const [tag, setTag] = useState("");
@@ -30,7 +32,6 @@ function Groups() {
         setAddButtonClicked(false)
     }
 
-    console.log(tag, "taaaaaaaaaaaaaaag");
 
 
     function openAddTagsModal(index) {
@@ -93,8 +94,6 @@ function Groups() {
             cloneTableInfo[arrayIndex].number_of_tags= cloneTableInfo[arrayIndex].tagNumbersArray.length;
             setTableInfo(cloneTableInfo);
         // }
-        console.log(cloneTableInfo, "clone")
-        console.log(tableInfo, "tableInfo")
         // cloneTableInfo[arrayIndex].number_of_tags=cloneTableInfo[arrayIndex].addedTags.length;
         // cloneTableInfo[index].number_of_tags = cloneTableInfo[index].number_of_tags + cloneTableInfo[index].addedTags.length;
         // cloneTableInfo[arrayIndex].tagNumbersLength = cloneTableInfo[arrayIndex].addedTags.length;

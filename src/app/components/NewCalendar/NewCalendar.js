@@ -52,7 +52,6 @@ function NewCalendar(){
         return () => draggable.destroy();
     },[])
 
-    console.log(eventData, "jjjjjjjjjjjjjjjjj")
 
     const eventClick = (eventClick) => {
         Alert.fire({
@@ -96,7 +95,6 @@ function NewCalendar(){
         eventData.dayEl.style.backgroundColor = 'white';
         setIsEditForm(prevState => !prevState)
     }
-        console.log(arg);
         arg.dayEl.style.backgroundColor = 'grey';
         // {date: Fri May 05 2023 00:00:00 GMT+0400 (Armenia Standard Time), dateStr: '2023-05-05', allDay: true,
         //     dayEl: td.fc-day.fc-day-fri.fc-day-future.fc-daygrid-day, jsEvent: MouseEvent, …}
@@ -105,7 +103,6 @@ function NewCalendar(){
     }
 
     const handleChange = (name, value) => {
-        console.log(name, value)
         setEventName(value);
     };
 
@@ -125,7 +122,6 @@ function NewCalendar(){
         }
     };
 
-    console.log(calendarEvents, "calendar events")
 
 
     return(
@@ -136,7 +132,6 @@ function NewCalendar(){
                         className={"inputStyling"}
                         value={eventName}
                         onChange={event =>{
-                            console.log(event, "event")
                             handleChange("eventName", event.target.value)
                             }
                         }

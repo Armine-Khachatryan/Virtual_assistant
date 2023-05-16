@@ -1,12 +1,17 @@
 import React from "react";
 import Facebook from '../../assets/images/Facebook.png';
 import LinkedIn from '../../assets/images/LinkedIn.png';
+import config from "../../config";
 import Img1 from '../../assets/images/Img1.png';
 import classes from './Dashboard.module.css';
 
 
 
 function Dashboard(){
+
+
+
+
 
     return(
         <div className={classes.profileDiv}>
@@ -18,7 +23,9 @@ function Dashboard(){
             <div className={classes.buttonsDiv}>
                 <div className={classes.btnProfile}>
                     <img src={Facebook} alt=""/>
-                    <div className={classes.btnText}>Connect to my Facebook</div>
+                    <div className={classes.btnText}
+                         onClick={()=> window.location.replace(`${config.baseUrl}auth/facebook/redirect`)}>
+                        Connect to my Facebook</div>
                 </div>
                 <div className={classes.btnProfile}>
                     <img src={LinkedIn} alt=""/>

@@ -116,20 +116,16 @@ function Login(props) {
             email: body.email,
             password: body.password,
         }
-        console.log(body, "body");
         try {
             let response = await axios.post(`${config.baseUrl}api/login`, formData);
-            console.log(response.data, "response login");
             if(response.data.data.token){
                 sessionStorage.setItem('token', response.data.data.token);
-                console.log("hiiiiiiiiiiiiii")
                 props.setAccessToken(sessionStorage.getItem('token'));
                 localStorage.removeItem('email');
                 dispatch(setUserData(response.data.user));
                 navigate(`../my-profile/dashboard`)
             }
     } catch (error) {
-        console.log(error, "error message")
             setSignInError("Something went wrong");
     }
 }

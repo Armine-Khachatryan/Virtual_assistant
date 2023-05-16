@@ -4,16 +4,12 @@ import {
     Routes,
     Route, Navigate
 } from "react-router-dom";
-import axios from "axios";
-import config from "./app/config";
 import Dashboard from "./app/pages/Dashboard/Dashboard";
-import {useDispatch} from "react-redux";
 import Login from "./app/pages/Login/Login";
 import AfterZoomCall from "./app/pages/AfterZoomCall/AfterZoomCall";
 import Registration from "./app/pages/Registration/Registration";
 import EmailVerification from "./app/pages/EmailVerification/EmailVerification";
 import './App.css';
-import {setUserData} from "./app/features/User/UserSlice";
 import Groups from "./app/pages/Groups/Groups";
 import Congratulations from "./app/pages/Congratulations/Congratulations";
 import MyProfile from "./app/pages/MyProfile/MyProfile";
@@ -41,7 +37,6 @@ function App() {
     //                 "Authorization": `Bearer ${token}`
     //             }
     //         });
-    //         console.log(response.data, "auth request data");
     //         dispatch(setUserData(response.data));
     //     } catch (error) {
     //         console.log(error.response, 'auth request  error response');
@@ -58,13 +53,14 @@ function App() {
                 <Route exact path="/register" element={<Registration/>}/>
                 <Route exact path="/after-zoom-call" element={<AfterZoomCall/>}/>
                 <Route exact path="/congratulations" element={<Congratulations/>}/>
+                {/*<Route exact path="/messages" element={<Messages/>}/>*/}
                 {accessToken ?
                     <>
                         <Route path="/my-profile" element={<MyProfile setAccessToken={setAccessToken}/>}>
                             <Route index path="dashboard" element={<Dashboard/>}/>
                             <Route path="groups" element={<Groups/>}/>
                             <Route path="schedule" element={<Schedule/>}/>
-                            <Route path="settings" element={<Settings/>}/>
+                            <Route path="settings" element={<Settings accessToken={accessToken}/>}/>
                             <Route path="*" element={<Navigate to="/my-profile/dashboard" replace/>}/>
                         </Route>
                     </> :<Route path="*" element={<Navigate to="/login" replace/>}/>
