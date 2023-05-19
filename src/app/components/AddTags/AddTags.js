@@ -5,6 +5,9 @@ import classes from './AddTags.module.css';
 import TagClosingIcon from '../../assets/images/TagClosingIcon.png';
 import WhiteAddIcon from '../../assets/images/WhiteAddIcon.png';
 import ClosingIcon from "../../assets/images/ClosingIcon.png";
+import axios from "axios";
+import config from "../../config";
+import {setUserData} from "../../features/User/UserSlice";
 
 
 
@@ -38,9 +41,30 @@ function AddTags(props){
     }
 
 
+
+
+    // let removeTokenHandler = async () => {
+    //     try {
+    //         let response = await axios.post(`${config.baseUrl}api/send/message`,{}, {
+    //             headers: {
+    //                 "Authorization": `Bearer ${token}`
+    //             }
+    //         });
+    //         sessionStorage.clear();
+    //         props.setAccessToken("");
+    //         dispatch(setUserData(null));
+    //         navigate('/')
+    //     }
+    //     catch (error) {
+    //         console.log(error, "error message")
+    //     }
+    // }
+
+
     const tagRemovingAndSaving =()=>{
         props.onSaveAddedTags();
-        props.closeAddTagsModal()
+        props.closeAddTagsModal();
+
     }
 
 

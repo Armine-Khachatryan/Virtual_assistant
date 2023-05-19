@@ -12,8 +12,8 @@ import classes from './Sidebar.module.css';
 
 function Sidebar(props){
 
-
     const setActive=(data)=>{
+    console.log(data)
     props.onSetRouting(data)
 }
 
@@ -36,12 +36,17 @@ function Sidebar(props){
         }
     ]
 
+    // {props.activeSideBar ==="groups/messages" && item.name ==="groups" ? <img src={ActiveGroupIcon} alt=""/> :
+    //     <img src={GroupIcon} alt=""/>}
 
     const renderSideBarData=sideBarData.map((item, index)=>
+
         <div className={classes.sidebarDiv} key={index}  onClick={()=>setActive(item.name)}>
-            {props.activeSideBar===item.name ?    <img src={item.activeIcon} alt=""/>:
+            {/*{props.activeSideBar ==="groups/messages" && item.name ==="groups" ? <img src={ActiveGroupIcon} alt=""/> :*/}
+            {/*    <img src={GroupIcon} alt=""/>}*/}
+            {props.activeSideBar.includes(item.name) ?  <img src={item.activeIcon} alt=""/>:
             <img src={item.icon} alt=""/>}
-            <div className={props.activeSideBar ===item.name ? classes.sidebarActiveName: classes.sideBarName}>
+            <div className={props.activeSideBar.includes(item.name) ? classes.sidebarActiveName: classes.sideBarName}>
                 {item.name.charAt(0).toUpperCase()+item.name.slice(1)}</div>
         </div>
     )

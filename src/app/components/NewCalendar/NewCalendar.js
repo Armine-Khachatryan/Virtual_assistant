@@ -50,7 +50,7 @@ function NewCalendar(){
             }
         });
         return () => draggable.destroy();
-    },[])
+    },[]);
 
 
     const eventClick = (eventClick) => {

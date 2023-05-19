@@ -5,9 +5,10 @@ import classes from './Groups.module.css';
 import AddTags from "../../components/AddTags/AddTags";
 import YourTagsModal from "../../components/YourTagsModal/YourTagsModal";
 import TagClosingIcon from "../../assets/images/TagClosingIcon.png";
+import {Outlet, useNavigate, useOutletContext} from "react-router-dom";
 
 
-function Groups() {
+function Groups(props) {
 
     const [tableInfo, setTableInfo] = useState(Array.from({length: 9}, (_, k) => ({
         group_logo: GroupLogo,
@@ -19,8 +20,11 @@ function Groups() {
         // id: Math.random() * (new Date().getTime() * performance.now())
     })))
 
-    console.log(tableInfo)
 
+    const setRouting= useOutletContext();
+
+    console.log(tableInfo)
+    const navigate= useNavigate();
     const [addTagsModalIsOpen, setAddTagsModalIsOpen] = useState(false);
     const [yourTagsModalIsOpen, setYourTagsModalIsOpen] = useState(false);
     const [tag, setTag] = useState("");
@@ -129,7 +133,7 @@ const renderSavedTags=tableInfo[arrayIndex]?.tagNumbersArray?.map((item, i)=>(
                         tableInfo.map((item, index) => {
                             return (
                                 <tr key={index}>
-                                    <td><img src={item.group_logo} alt=""/></td>
+                                    <td onClick={()=>{setRouting("groups/messages")}}><img src={item.group_logo} alt=""/></td>
                                     <td>{item.group_name}</td>
                                     <td>{item.number_of_members}</td>
                                     <td
@@ -167,6 +171,7 @@ const renderSavedTags=tableInfo[arrayIndex]?.tagNumbersArray?.map((item, i)=>(
                 arrayIndex={arrayIndex}
                 renderSavedTags={renderSavedTags}
             />
+            {/*<Outlet/>*/}
         </>
 
 

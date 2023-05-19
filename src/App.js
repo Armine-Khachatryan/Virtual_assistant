@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {
     BrowserRouter,
     Routes,
@@ -11,6 +11,7 @@ import Registration from "./app/pages/Registration/Registration";
 import EmailVerification from "./app/pages/EmailVerification/EmailVerification";
 import './App.css';
 import Groups from "./app/pages/Groups/Groups";
+import Messages from "./app/pages/Messages/Messages";
 import Congratulations from "./app/pages/Congratulations/Congratulations";
 import MyProfile from "./app/pages/MyProfile/MyProfile";
 import Schedule from "./app/pages/Schedule/Schedule";
@@ -53,12 +54,16 @@ function App() {
                 <Route exact path="/register" element={<Registration/>}/>
                 <Route exact path="/after-zoom-call" element={<AfterZoomCall/>}/>
                 <Route exact path="/congratulations" element={<Congratulations/>}/>
-                {/*<Route exact path="/messages" element={<Messages/>}/>*/}
+                <Route exact path="/messages" element={<Messages/>}/>
                 {accessToken ?
                     <>
                         <Route path="/my-profile" element={<MyProfile setAccessToken={setAccessToken}/>}>
                             <Route index path="dashboard" element={<Dashboard/>}/>
+                            {/*<Route path="groups" element={<Groups/>}>*/}
+                            {/*    <Route index path="messages" element={<Messages/>}/>*/}
+                            {/*</Route>*/}
                             <Route path="groups" element={<Groups/>}/>
+                            <Route  path="groups/messages" element={<Messages/>}/>
                             <Route path="schedule" element={<Schedule/>}/>
                             <Route path="settings" element={<Settings accessToken={accessToken}/>}/>
                             <Route path="*" element={<Navigate to="/my-profile/dashboard" replace/>}/>

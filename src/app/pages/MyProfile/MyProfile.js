@@ -25,6 +25,7 @@ function MyProfile(props) {
 
 
     const setRouting =(data)=>{
+        console.log(data , "data")
         setActiveSideBar(data);
         navigate(`./${data}`)
     }
@@ -58,7 +59,7 @@ function MyProfile(props) {
                             <Header onSetRouting={setRouting} setAccessToken={props.setAccessToken}/>
                             {pathname === '/my-profile/dashboard' ? <div className="insideDivDashboard"> <Outlet/></div>:
                                 <div className="insideDiv">
-                                    <Outlet/>
+                                    <Outlet context={setRouting}/>
                                 </div>}
                             {pathname !== '/my-profile/dashboard' && <Footer/>}
                         </div>

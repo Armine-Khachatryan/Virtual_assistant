@@ -67,6 +67,8 @@ function Header(props){
                 return <div className={classes.headerLeft}>Dashboard</div>
             case '/my-profile/groups':
                 return <div className={classes.headerLeft}>Groups</div>
+            case '/my-profile/groups/messages':
+                return <div className={classes.headerLeft}>Groups</div>
             case '/my-profile/schedule':
                 return <div className={classes.headerLeft}>Schedule</div>
             case '/my-profile/settings':

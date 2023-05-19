@@ -4,6 +4,7 @@
     border-radius: 16px;
     height: 100%;
     padding: 24px 32px;
+    overflow-y: auto;
 }
 
 .groupHeader{
