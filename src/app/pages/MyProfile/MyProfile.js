@@ -24,10 +24,17 @@ function MyProfile(props) {
     }, [])
 
 
-    const setRouting =(data)=>{
+    const setRouting =(data, parameter)=>{
         console.log(data , "data")
         setActiveSideBar(data);
-        navigate(`./${data}`)
+        if(parameter){
+            navigate(`./${data}`, {state:parameter} );
+        }
+        else{
+            navigate(`./${data}`);
+        }
+
+
     }
 
 

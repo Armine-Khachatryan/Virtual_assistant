@@ -23,11 +23,13 @@ function NewCalendar(){
     const [calendarEvents, setCalendarEvents]=useState([
         {
             title: "event 1",
+            name:"hagjsghajs",
             start: new Date("2023-05-05 20:00"),
             id: "99999998"
         },
         {
             title: "event 2",
+            name:"hagjsghajs",
             start: new Date("2023-05-04 00:00"),
             id: "99999999"
         }

@@ -24,6 +24,7 @@ function Header(props){
     const [notificationsModalIsOpen, setNotificationsModalModalIsOpen] = useState(false);
     const dispatch=useDispatch();
     const customer = useSelector((state)=>state.user.data);
+    console.log(customer, "customer")
     let userName = customer ? customer.full_name : '';
 
 
@@ -71,6 +72,8 @@ function Header(props){
                 return <div className={classes.headerLeft}>Groups</div>
             case '/my-profile/schedule':
                 return <div className={classes.headerLeft}>Schedule</div>
+            case '/my-profile/manage_available_time':
+                return <div className={classes.headerLeft}>Manage available time</div>
             case '/my-profile/settings':
                 return <div className={classes.headerLeft}>Settings</div>
             default:

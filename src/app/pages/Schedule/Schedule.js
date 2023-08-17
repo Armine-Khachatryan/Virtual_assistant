@@ -8,13 +8,14 @@ import './Schedule.css'
 
 function Schedule(){
 
-    const [value, setValue] = useState(new Date());
+    // const [value, setValue] = useState(new Date());
 
 
     return(
         <>
             <div className="mainStyle">
-                <Calendar onChange={setValue} value={value} />
+                <div></div>
+                {/*<Calendar onChange={setValue} value={value} />*/}
                 <NewCalendar/>
             </div>
         </>

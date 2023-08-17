@@ -1,0 +1,207 @@
+.manageTimeWhole{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    padding: 20px 24px;
+    max-width: 1400px;
+    width: 100%;
+    margin: auto;
+    overflow-y: auto;
+    height:calc(100vh - 200px) ;
+}
+
+.manageTimeUpPart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F0F1F2;
+    margin-bottom: 24px;
+}
+
+.manageTimeTitle{
+    font-family: Inter_Medium, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
+    text-transform: capitalize;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #1E1E2D;
+}
+
+.buttonDiv{
+    background: #2697D4;
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Inter-Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.manageTimeDown{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+
+}
+
+.manageTimeRow{
+    padding-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F0F1F2;
+    margin-bottom: 24px;
+}
+
+.manageTimeRow:last-child{
+    border-bottom: none;
+}
+.manageTimeLeft{
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.fromSelect{
+    margin-left: 45px;
+    margin-right: 16px;
+    padding: 8px 24px;
+    width: 120px;
+    border: 1px solid #A3A7B9;
+    border-radius: 4px;
+    text-align: center;
+    font-family: Inter_Medium, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 36px;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000000;
+}
+
+.fromSelect:focus{
+    outline: none;
+}
+
+.toSelect{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 8px 24px;
+    width: 120px;
+    border: 1px solid #A3A7B9;
+    border-radius: 4px;
+    text-align: center;
+    font-family: Inter_Medium, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 36px;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000000;
+}
+
+.toSelect:focus{
+    outline: none;
+}
+
+.trashImg{
+    cursor: pointer;
+}
+
+.manageTimeRight{
+    cursor: pointer;
+    width: 24px;
+}
+.manageTimeRight img{
+    width: 24px;
+    height: 24px;
+}
+.firstPart{
+    width: 15%
+}
+.secondPart{
+    /*width: 60%;*/
+    margin-right: 60px;
+}
+.secondPartInside{
+    display: flex;
+}
+
+.secondPartInside:first-child{
+    margin-bottom: 5px;
+}
+.thirdPart{
+    margin: auto;
+    width: 15%;
+}
+
+.unAwailableDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.unAwailable{
+    font-family: Inter_Medium, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 36px;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #A3A7B9;
+    /*margin-left: 16px;*/
+    width: 60%;
+    margin-right: 60px;
+}
+.trash{
+    margin-left: 10px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.timeZoneLabel{
+    margin-top: 20px;
+    display: block;
+    font-family:Inter_Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1E1E2D;
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+
+
+.timeZoneInput{
+    width: 350px;
+    padding: 12px;
+    font-family: Inter_Regular, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1E1E2D;
+    background: #FFFFFF;
+    border:1px solid #A3A7B9;
+    border-radius: 4px;
+    margin-left: 20px;
+}
+.timeZoneInput:focus{
+    outline: none;
+}

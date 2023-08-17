@@ -64,7 +64,6 @@ function AddTags(props){
     const tagRemovingAndSaving =()=>{
         props.onSaveAddedTags();
         props.closeAddTagsModal();
-
     }
 
 

@@ -1,0 +1,11 @@
+.titleNew{
+    font-family: Inter_Medium, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 150%;
+    color: #1E1E2D;
+    margin-bottom: 3px;
+    text-align: center;
+    padding: 20px;
+}

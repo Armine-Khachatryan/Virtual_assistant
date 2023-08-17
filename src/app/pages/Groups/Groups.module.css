@@ -89,6 +89,7 @@
     padding: 9px;
     background: #F0F1F2;
     border-radius: 360px;
+    min-width: 100px;
 }
 
 .itemDiv{
@@ -100,6 +101,26 @@
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 200px;
+}
+
+.logoStyle{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: contain;
+}
+
+.groupName:first-letter{
+    text-transform: uppercase;
+
+}
+.groupName{
+    font-family: Inter_Regular,sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1E1E2D;
+    cursor: pointer;
 }
 
 @media only screen and (min-width:768px) and (max-width: 1024px) {

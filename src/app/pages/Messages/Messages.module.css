@@ -36,8 +36,10 @@
 
 .container {
     display: flex;
-    flex-flow: column wrap;
-    max-height: 960px;
+    flex-wrap: wrap;
+    /*flex-flow: column wrap;*/
+    width: 100%;
+    /*max-height: 960px;*/
     padding: 20px;
     /*max-width: 70%;*/
     /*counter-reset: items;*/
